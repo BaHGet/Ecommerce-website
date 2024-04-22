@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Category = () => {
-  return (
-    <div></div>
-  )
+export class category extends Component {
+  render() {
+    return (
+      <div>category</div>
+    )
+  }
 }
 
-export default Category
+export default category
