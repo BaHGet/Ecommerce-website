@@ -1,12 +1,12 @@
 import './App.css';
-import Header from './Components/Header/header.jsx';
-import Main from './Components/HomePage/main.jsx';
+import Header from './Components/navBar/header.jsx';
+import Category from './Components/categoryPage/category.jsx';
 
 function App() {
   return (
     <>
       <Header />
-      <Main />
+      <Category />
     </>
   );
 }

@@ -1,0 +1,23 @@
+.category-list{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    padding: 10px 0 10px 0;
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+}
+
+.category-list-items{
+    padding-left: 15px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+/* when categroy is chosen */
+.category-chosen{
+    color: lightgreen;
+    text-decoration: underline;
+}
