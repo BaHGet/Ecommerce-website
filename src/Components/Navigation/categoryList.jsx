@@ -1,5 +1,5 @@
 import {React, Component} from 'react'
-import './category-style.css'
+import './navigation-categories-style.css'
 
 class CategoryList extends Component {
   render() {
