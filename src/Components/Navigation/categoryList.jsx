@@ -4,7 +4,6 @@ import './navigation-categories-style.css'
 class CategoryList extends Component {
   render() {
     const isInLoction = window.location.pathname === '/' ? true : false
-    console.log(isInLoction)
     const {category, setSelectedCategory} = this.props
     return (
       <>

@@ -543,7 +543,6 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state.category)
         return (
         <>
             <Header category={this.state.category} setSelectedCategory={this.setSelectedCategory} />
