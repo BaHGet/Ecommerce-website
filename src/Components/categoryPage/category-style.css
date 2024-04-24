@@ -78,10 +78,10 @@
     border-radius:90rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
     cursor: pointer;
-    transition: 200ms;
+    transition: all 200ms ease-in-out;
 }
 
 .quick-shop-btn:hover{
     background-color: #2f693e;
-    transition: 200ms;
+    transition: all 200ms ease-in-out;
 }

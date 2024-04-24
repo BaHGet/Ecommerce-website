@@ -474,32 +474,31 @@ const Products = [
   },
 ]
 
-
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedProduct: 0
+            targetedProduct:''
         };
     }
-    setSelectedProduct = (product) => {
-        this.setState(() => ({
-            selectedProduct: product
+    setSelectedProduct = () =>{
+        this.setState(() =>({
+            targetedProduct:localStorage.getItem('Pid') || ''
         }));
-    };
+    }
+
     render() {
         return (
         <>
             <Header />
             <Routes>
                 <Route
-                    path="/"ProductPage
-                    exact
+                    path="/"
                     element={<Category Products={Products}  setSelectedProduct={this.setSelectedProduct} />}
                 />
                 <Route
-                    path='ProductPage'
-                    element={<ProductPage selectedProduct={this.props.selectedProduct} />}
+                    path='/ProductPage'
+                    element={<ProductPage selectedProduct={Products.filter(product => product.id === this.state.targetedProduct)} />}
                 />
             </Routes>
             
