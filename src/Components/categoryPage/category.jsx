@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import ProductCard from './ProductCard';
 import "./category-style.css";
-export class category extends Component {
+export class Category extends Component {
   render() {
-    const { Products } = this.props;
-    const { setSelectedProduct } = this.props;
+    const { Products, setSelectedProduct} = this.props;
+    // console.log(Products)
     return (
       <div className='products-gallery'>
         {Products.map((product,r) =>{
@@ -15,4 +15,4 @@ export class category extends Component {
   }
 }
 
-export default category
+export default Category

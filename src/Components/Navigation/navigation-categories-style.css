@@ -16,8 +16,14 @@
     cursor: pointer;
 }
 
-/* when categroy is chosen */
-.category-chosen{
+.selected{
     color: lightgreen;
     text-decoration: underline;
+    text-underline-offset: 20px;
+}
+
+.hide{
+    opacity: 0;
+    display: none;
+    cursor:not-allowed;
 }

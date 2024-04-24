@@ -6,7 +6,7 @@ a{
 .products-gallery{
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
 }

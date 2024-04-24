@@ -6,10 +6,11 @@ import CategoryList from './categoryList'
 
 class Header extends Component {
   render() {
+    const {category, setSelectedCategory} = this.props
     return (
       <header>
-        <CategoryList />
-        <img alt='logo' src={logo} className='logo' />
+        <CategoryList category={category} setSelectedCategory={setSelectedCategory} />
+        <img alt='logo' src={logo} className='logo' onClick={() => window.location = '/'} />
         <Cart />
       </header>
     );

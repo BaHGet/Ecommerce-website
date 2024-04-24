@@ -41,8 +41,7 @@ class ProductCard extends Component {
     }
     render() {
 
-        const {Product} = this.props
-        const {setSelectedProduct} = this.props
+        const {Product, setSelectedProduct, SelectedCategory} = this.props
         return (
             <Link to="/ProductPage">
                 <div key={Product.id+'container'} dataid={Product.id} onClick={(e) => {test(e);setSelectedProduct();}} onMouseEnter={this.setHoveringStateTrue} onMouseLeave={this.setHoveringStateFalse} className='product-card'>
