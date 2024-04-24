@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import './App.css';
 import Header from './Components/Navigation/header.jsx';
 import Category from './Components/categoryPage/category.jsx';
-import ProductPage from './Components/productPage.jsx';
+import ProductPage from './Components/Product Page/productPage.jsx';
 
 const Products = [
   {

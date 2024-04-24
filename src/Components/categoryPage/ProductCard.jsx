@@ -6,6 +6,10 @@ const test = (e) =>{
     // console.log(e.target.attributes.dataid.value);
     localStorage.setItem('Pid',e.target.attributes.dataid.value)
 }
+
+const handleAddToCart = () =>{
+    //To-Do
+}
 class ProductCard extends Component {
     constructor(props){
         super(props);
@@ -47,7 +51,7 @@ class ProductCard extends Component {
                     <h2 key={Product.id+'pricetag'} dataid={Product.id} className='product-price'>
                         {Product.prices[0].amount} {' '}{<span className='product-price-symbol'>{Product.prices[0].currency.symbol}</span>}
                     </h2>
-                    {!Product.inStock || !this.state.Hover.state ?'':<button key={Product.id+'btn'} dataid={Product.id} className='quick-shop-btn'></button>}
+                    {!Product.inStock || !this.state.Hover.state ?'':<button key={Product.id+'btn'} onClick={handleAddToCart} dataid={Product.id} className='quick-shop-btn'></button>}
                 </div>
             </Link>
         )
