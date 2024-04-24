@@ -1,7 +1,9 @@
 import {React, Component} from 'react'
+import { Route, Routes } from "react-router-dom";
 import './App.css';
 import Header from './Components/Navigation/header.jsx';
 import Category from './Components/categoryPage/category.jsx';
+import ProductPage from './Components/productPage.jsx';
 
 const Products = [
   {
@@ -474,14 +476,36 @@ const Products = [
 
 
 class App extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <Category Products={Products} />
-      </>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedProduct: 0
+        };
+    }
+    setSelectedProduct = (product) => {
+        this.setState(() => ({
+            selectedProduct: product
+        }));
+    };
+    render() {
+        return (
+        <>
+            <Header />
+            <Routes>
+                <Route
+                    path="/"ProductPage
+                    exact
+                    element={<Category Products={Products}  setSelectedProduct={this.setSelectedProduct} />}
+                />
+                <Route
+                    path='ProductPage'
+                    element={<ProductPage selectedProduct={this.props.selectedProduct} />}
+                />
+            </Routes>
+            
+        </>
+        );
+    }
 }
 
 export default App;

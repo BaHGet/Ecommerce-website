@@ -63,18 +63,25 @@ const one ={
     ]
 }
 
+const test = (e) =>{
+    console.log(e.target.attributes.dataid.value)
+    window.location='/ProductPage'
+}
 export class ProductCard extends Component {
+    
+    
+    
     render() {
 
         const {Product} = this.props
-    // style={{marginRight: spacing + 'em'}}
         return (
-            <div className='product-card'>
-                <div className='product-image' style={{backgroundImage:`url(${Product.gallery[0]})`}} ></div>
-                <h1 className='product-name'>{Product.name}</h1>
-                <h2 className='product-price'>
+            <div dataid={Product.id} onClick={test} className='product-card'>
+                <div dataid={Product.id} className='product-image' style={{backgroundImage:`url(${Product.gallery[0]})`}} >{Product.inStock?'':<h1 dataid={Product.id} className='out-of-stock'>Out of stock</h1>}</div>
+                <h1 dataid={Product.id} className='product-name'>{Product.name}</h1>
+                <h2 dataid={Product.id} className='product-price'>
                     {Product.prices[0].amount} {' '}{<span className='product-price-symbol'>{Product.prices[0].currency.symbol}</span>}
                 </h2>
+                {!Product.inStock?'':<button dataid={Product.id} className='quick-shop-btn'></button>}
             </div>
         )
     }

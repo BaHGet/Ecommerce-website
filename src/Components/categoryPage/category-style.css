@@ -13,7 +13,7 @@
     margin: 2px;
     margin-bottom: 50px;
     font-family: "Raleway", sans-serif;
-    transition: 200ms;
+    
 }
 
 .product-card:hover{
@@ -23,12 +23,30 @@
 
 .product-image{
     width: 98%;
-    height: 80%;
+    height: 70%;
     margin: auto;
     background-position: center;
     background-size:contain;
     background-clip: content-box;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.out-of-stock{
+    font-family: "Raleway", sans-serif;
+    font-weight:100;
+    font-size: 40px;
+    background-color: #FFFFFF;
+    opacity: 50%;
+    color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .product-name{
@@ -41,4 +59,29 @@
     font-size: 18px;
     font-weight: bold;
     Line-height: 28.8px;
+}
+
+.quick-shop-btn{
+    position: relative;
+    display: block;
+    right: -296px;
+    bottom: 97px;
+    background-color: #5ECE7B;
+    border: none;
+    background-image: url("../../assets/lightentrolley.png");
+    background-position: center;
+    background-size:30px;
+    background-repeat: no-repeat;
+    z-index: 999;
+    width: 52px;
+    height: 52px;
+    border-radius:90rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.quick-shop-btn:hover{
+    background-color: #2f693e;
+    transition: 200ms;
 }
