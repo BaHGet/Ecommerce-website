@@ -1,5 +1,4 @@
 import {React, Component} from 'react'
-import './product-page-style.css'
 import Gallery from './gallery'
 import Details from './details'
 

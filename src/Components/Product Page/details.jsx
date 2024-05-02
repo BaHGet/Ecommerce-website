@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import parse from 'html-react-parser';
-import './product-page-style.css'
+import './details-style.css'
 
 
 class Details extends Component {
@@ -84,7 +84,7 @@ class Details extends Component {
                         }
                     <h1 className="attribute-name">Price:</h1>
                     <h2>{Product.prices[0].currency.symbol}{Product.prices[0].amount}</h2>
-                    <button></button>
+                    <button className='add-to-cart'>Add To Cart</button>
                     <p className="product-description">{parse(Product.description)}</p>
                 </div>
                 );

@@ -533,9 +533,9 @@ class App extends Component {
     componentDidMount(){
         this.setSelectedProduct()
     }
-    setSelectedProduct = () =>{
+    setSelectedProduct = (id) =>{
         this.setState(() =>({
-            targetedProduct:localStorage.getItem('Pid')
+            targetedProduct:id
         }));
     }
     setSelectedCategory = (e) =>{

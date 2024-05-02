@@ -67,10 +67,9 @@ a{
 }
 
 .quick-shop-btn{
-    position: relative;
-    display: block;
-    right: -296px;
-    bottom: 97px;
+    position:relative;
+    left: 290px;
+    bottom: 80px;
     background-color: #5ECE7B;
     border: none;
     background-image: url("../../assets/lightentrolley.png");
@@ -89,4 +88,5 @@ a{
 .quick-shop-btn:hover{
     background-color: #2f693e;
     transition: all 200ms ease-in-out;
+    z-index: 999;
 }
