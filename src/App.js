@@ -530,9 +530,12 @@ class App extends Component {
             category:'all'
         };
     }
+    componentDidMount(){
+        this.setSelectedProduct()
+    }
     setSelectedProduct = () =>{
         this.setState(() =>({
-            targetedProduct:localStorage.getItem('Pid') || ''
+            targetedProduct:localStorage.getItem('Pid')
         }));
     }
     setSelectedCategory = (e) =>{

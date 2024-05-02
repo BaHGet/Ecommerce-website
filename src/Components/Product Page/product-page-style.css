@@ -1,3 +1,6 @@
+*{
+    color: #1D1F22;
+}
 .product-contanier{
     display: flex;
     justify-content: space-evenly;
@@ -33,11 +36,91 @@
     width: 25%;
     height: 70vh;
     padding: 30px;
-    background-color: rgb(201, 201, 200);
     font-family: "Raleway", sans-serif;
     font-weight: lighter;
 }
 .product-details>h1{
     font-weight: lighter;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+.product-details-name{
+    margin-bottom: 70px !important;
+    font-weight: 400 !important;
+    font-size: 55px;
+    position: relative;
+}
+.attribute-name{
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 700 !important;
+}
+.btn-tag{
+    background-color: transparent;
+    border: none;
+    width: 63px;
+    height: 49px;
+    margin: 0 15px 0 15px;
+    padding: 0;
+}
+.btn-tag:hover{
+    background-color: rgba(192, 192, 192, 0.685);
+}
+.tags{
+    display: flex;
+    justify-content:  flex-start;
+}
+.tag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    border: 2.5px #1D1F22 solid;
+    width: 63px;
+    height: 45px;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 700;
+    line-height: 18px;
+}
+
+.color-tag{
+    list-style: none;
+    width: 40px;
+    height: 40px;
+}
+.color-btn-tag{
+    background-color: transparent;
+    border: 2.5px #1D1F22 solid;
+    width: 44px;
+    height: 44px;
+    margin: 0 15px 0 15px;
+    padding: 0;
+}
+.color-btn-tag:hover{
+    border: 1.5px lightgreen  solid;
+}
+.product-description{
+    height: 160px;
+    font-family: "Roboto", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+.selection-div-overlay{
+    background-color: gray;
+    width: inherit;
+    height: inherit;
+    position: fixed
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background:#1D1F22;
+    border-radius: 10px;
 }
