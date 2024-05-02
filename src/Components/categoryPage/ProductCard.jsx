@@ -38,8 +38,11 @@ class ProductCard extends Component {
         }));
     }
     render() {
-
-        const {Product, setSelectedProduct} = this.props
+        const {Product, setTargetedProduct} = this.props
+        const handleAssignTargetedProduct = (id) =>{
+            // localStorage.setItem('targetedProducted',id)
+            setTargetedProduct(id);
+        }
         return (
             <>
                 <div 
@@ -53,7 +56,7 @@ class ProductCard extends Component {
                         <div 
                             key={Product.id+'image'} 
                             dataid={Product.id} 
-                            onClick={() => setSelectedProduct(Product.id)} className='product-image' 
+                            onClick={() => handleAssignTargetedProduct(Product.id)} className='product-image' 
                             style={{backgroundImage:`url(${Product.gallery[0]})`}}
                         >
                             {Product.inStock?'':<h1 dataid={Product.id} className='out-of-stock'>Out of stock</h1>}
@@ -61,13 +64,13 @@ class ProductCard extends Component {
                         <h1 
                             key={Product.id+'name'} 
                             dataid={Product.id} 
-                            onClick={() => setSelectedProduct(Product.id)} 
+                            onClick={() => handleAssignTargetedProduct(Product.id)} 
                             className='product-name'
                         >{Product.name}</h1>
                         <h2 
                             key={Product.id+'pricetag'} 
                             dataid={Product.id} 
-                            onClick={() => setSelectedProduct(Product.id)} 
+                            onClick={() => handleAssignTargetedProduct(Product.id)} 
                             className='product-price'
                         >
                         {<span className='product-price-symbol'>{Product.prices[0].currency.symbol}</span>}{Product.prices[0].amount} {' '}

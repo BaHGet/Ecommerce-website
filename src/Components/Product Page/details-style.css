@@ -73,7 +73,7 @@
     border: 2px solid #5ECE7B  !important;
 }
 .add-to-cart{
-    width: 90%;
+    width: 400px;
     height: 52px;
     color: white;
     background-color: #5ECE7B;
@@ -82,9 +82,20 @@
     font-weight: 600;
     font-size: 24px;
     cursor:pointer;
+    margin: auto;
 }
 .add-to-cart:hover{
     background-color: #429257;
+}
+.not-allowed{
+    background-color: #808080;
+}
+.not-allowed-overlay{
+    position: absolute;
+    width: 400px;
+    height: 52px;
+    background-color: transparent;
+    z-index: 999;
 }
 .product-description{
     height: 160px;

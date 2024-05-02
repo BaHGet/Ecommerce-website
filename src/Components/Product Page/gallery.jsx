@@ -10,7 +10,7 @@ class Gallery extends Component {
             cart:''
         }
     }
-    getGalleryArrayLength = (index) =>{
+    setGalleryArrayLength = (index) =>{
         this.setState(()=>({
             gallaryLength:index,
         }))
@@ -40,6 +40,9 @@ class Gallery extends Component {
             }
         }
         if(Product){
+            if(this.state.gallaryLength===0){
+                this.setGalleryArrayLength(Product.gallery.length)
+            }
             return (
                 <div className='gallery product-contanier'>
                     <div className='side-overview'>
@@ -48,10 +51,12 @@ class Gallery extends Component {
                     })}
                     </div>
                     <div className='slide-show'>
-                        <div className='slide-show-btns'>
-                            <button className='left-slide-show-btn' onClick={()=> handleDiscrementImageIndex(this.state.imageIndex,Product.gallery.length)}></button>
-                            <button className='right-slide-show-btn' onClick={()=> handleIncrementImageIndex(this.state.imageIndex,Product.gallery.length)}></button>
-                        </div>
+                        {this.state.gallaryLength ===1? '':
+                            <div className='slide-show-btns'>
+                                <button className='left-slide-show-btn' onClick={()=> handleDiscrementImageIndex(this.state.imageIndex,Product.gallery.length)}></button>
+                                <button className='right-slide-show-btn' onClick={()=> handleIncrementImageIndex(this.state.imageIndex,Product.gallery.length)}></button>
+                            </div>
+                            }
                         <img className='main-photo' alt='Product' src={Product.gallery[this.state.imageIndex]}/>
                     </div>
                 </div>

@@ -527,15 +527,29 @@ class App extends Component {
         super(props);
         this.state = {
             targetedProduct:'',
-            category:'all'
+            category:'all',
+            arrayOfAtrributes:[
+                {item:'',name:'',value:''}
+            ],
         };
     }
-    componentDidMount(){
-        this.setSelectedProduct()
+    componentWillUnmount(){
+        localStorage.clear();
     }
-    setSelectedProduct = (id) =>{
+    componentDidMount(){
+        this.setTargetedProduct()
+    }
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.arrayOfAtrributes !== this.state.arrayOfAtrributes){
+            this.state.arrayOfAtrributes.map(attribute => {
+                return localStorage.setItem(`${attribute.item}~${attribute.name}`, JSON.stringify(attribute));
+            })
+        }
+    }    
+    setTargetedProduct = (id) =>{
+        const Id = id //=== undefined ? localStorage.getItem('targetedProducted') : id
         this.setState(() =>({
-            targetedProduct:id
+            targetedProduct:Id
         }));
     }
     setSelectedCategory = (e) =>{
@@ -544,22 +558,44 @@ class App extends Component {
             category:category
         }));
     }
+    setSelectedAtrributes = (array) =>{
+        this.setState(()=>({
+            arrayOfAtrributes:array
+        }))
+    }
 
     render() {
         return (
         <>
-            <Header category={this.state.category} setSelectedCategory={this.setSelectedCategory} />
+            <Header
+                category={this.state.category}
+                setSelectedCategory={this.setSelectedCategory}
+                arrayOfAtrributes={this.state.arrayOfAtrributes}
+                Products={Products}//.filter(product => product.id === this.state.arrayOfAtrributes[0].item)
+            />
             <Routes>
                 <Route
                     path="/"
-                    element={<Category Products={this.state.category === 'all'? Products : Products.filter(product =>product.category === this.state.category)}  setSelectedProduct={this.setSelectedProduct} SelectedCategory={this.category} />}
+                    element={
+                    <Category 
+                    Products={
+                        this.state.category === 'all'?
+                        Products 
+                    : 
+                        Products.filter(product =>product.category === this.state.category)}
+                        setTargetedProduct={this.setTargetedProduct} 
+                        SelectedCategory={this.category} 
+                    />}
                 />
                 <Route
                     path='/ProductPage'
-                    element={<ProductPage selectedProduct={Products.filter(product => product.id === this.state.targetedProduct)} />}
+                    element={
+                    <ProductPage
+                        selectedProduct={Products.filter(product => product.id === this.state.targetedProduct)} 
+                        setSelectedAtrributes={this.setSelectedAtrributes} 
+                    />}
                 />
             </Routes>
-            
         </>
         );
     }
