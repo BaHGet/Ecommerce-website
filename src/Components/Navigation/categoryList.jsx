@@ -1,8 +1,10 @@
 import {React, Component} from 'react'
 import './navigation-categories-style.css'
+import "../../API/getCategories"
 
 class CategoryList extends Component {
   render() {
+
     const isInLoction = window.location.pathname === '/' ? true : false
     const {category, setSelectedCategory} = this.props
     return (
