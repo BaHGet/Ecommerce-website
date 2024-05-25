@@ -25,6 +25,7 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         ),
         'G' => 
         array (
+            'GraphQL\\' => 8,
             'GrahamCampbell\\ResultType\\' => 26,
         ),
         'D' => 
@@ -53,6 +54,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'GraphQL\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/webonyx/graphql-php/src',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (

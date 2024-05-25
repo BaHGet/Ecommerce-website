@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => 'c947fad00c6847f7846df31321035715a6deb021',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'c947fad00c6847f7846df31321035715a6deb021',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -70,6 +70,15 @@
             'reference' => '2cf9fb6054c2bb1d59d1f3817706ecdb9d2934c4',
             'type' => 'library',
             'install_path' => __DIR__ . '/../vlucas/phpdotenv',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'webonyx/graphql-php' => array(
+            'pretty_version' => 'v15.11.1',
+            'version' => '15.11.1.0',
+            'reference' => 'ab4ff2719b101dc3bfc3aaaf800edc21a98c56dc',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../webonyx/graphql-php',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
