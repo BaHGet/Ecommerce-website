@@ -23,4 +23,9 @@ class ProductService
         return $this->productRepository->getProductById($productId);
     }
 
+    public function getCategories()
+    {
+        return $this->productRepository->getCategories();
+    }
+
 }

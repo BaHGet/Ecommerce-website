@@ -18,7 +18,6 @@ class ProductController {
 
     // Action to list all products
     public function getAll() {
-        header('Content-Type: application/json');
         $products = $this->productService->getAllProducts();
         $productArray = array_map(function($product) {
             return $product->toArray();
@@ -41,6 +40,17 @@ class ProductController {
         } else {
             http_response_code(400);
             echo json_encode(['message' => 'Product ID not provided']);
+        }
+    }
+    
+    public function getCategories(){
+        header('Content-Type: application/json');
+        $categories = $this->productService->getCategories();
+        if($categories){
+            echo json_encode($categories);
+        }else{
+            http_response_code(500);
+            echo json_encode(['message' => 'Server issue']);
         }
     }
 }

@@ -12,29 +12,31 @@ class Product {
     private $category;
     private $attributes;
     private $brand;
+    private $price;
 
-    public function __construct($id, $name, $inStock, $gallery, $description, $category, $attributes, $brand) {
+    public function __construct($id, $name,  $brand, $inStock, $price, $category, $description, $attributes, $gallery) {
         $this->id = $id;
         $this->name = $name;
-        $this->inStock = $inStock;
-        $this->gallery = $gallery;
-        $this->description = $description;
-        $this->category = $category;
-        $this->attributes = $attributes;
         $this->brand = $brand;
-        echo 'model approach';
-        echo '<br>';
+        $this->inStock = $inStock;
+        $this->price = $price;
+        $this->category = $category;
+        $this->description = $description;
+        $this->attributes = $attributes;
+        $this->gallery = $gallery;
     }
 
     public function toArray() {
-        echo 'model approach';
-    echo '<br>';
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'brand' => $this->brand,
             'inStock' => $this->inStock,
-            'gallery' => $this->gallery,
+            'price' => $this->price,
+            'category' => $this->category,
             'description' => $this->description,
+            'attributes' => $this->attributes,
+            'gallery' => $this->gallery,
         ];
     }
 }
