@@ -33,7 +33,6 @@ class GraphqlProductService {
         if ($row) {
             $gallery = explode('|', $row['gallery']);
             $attributes = $this->parseAttributes($row['attributes']);
-            var_dump($row['in_stock']);
             $price = $row['price'];
             $product = new Product(
                 $row['id'],
