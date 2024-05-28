@@ -21,13 +21,20 @@ $router->registerRoutes($routes);
 use App\Repositories\ProductRepository;
 use App\Services\ProductService;
 use App\Controllers\ProductController;
+use App\Services\GraphqlCategoryService;
+use App\Services\GraphqlProductService;
+use App\Controllers\GraphQL;
 
 $productRepository = new ProductRepository($pdo);
 $productService = new ProductService($productRepository);
 $productController = new ProductController($productService);
+$GraphqlProductService = new GraphqlProductService($pdo);
+$GraphqlCategoryService = new GraphqlCategoryService($pdo);
+$GraphQL = new GraphQL($GraphqlProductService, $GraphqlCategoryService);
 
 // Register controller instances in the router
 $router->addControllerInstance(ProductController::class, $productController);
+$router->addControllerInstance(GraphQL::class, $GraphQL);
 
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

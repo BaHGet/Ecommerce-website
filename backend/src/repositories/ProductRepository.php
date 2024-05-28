@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use App\Models\Category;
 use PDO;
 
 class ProductRepository {
@@ -18,7 +19,7 @@ public function getAll() {
             p.id, p.name, p.in_stock, p.description, p.brand,
             GROUP_CONCAT(DISTINCT ca.name) AS category,
             GROUP_CONCAT(DISTINCT pg.images) AS gallery,
-            GROUP_CONCAT(CONCAT_WS('|', pa.attribute, pa.values) SEPARATOR '||') AS attributes,
+            GROUP_CONCAT(CONCAT_WS('|', pa.attribute, pa.values,pa.displayValue,pa.type) SEPARATOR '||') AS attributes,
             GROUP_CONCAT(DISTINCT CONCAT_WS('', pr.amount, pr.currency)) AS price
         FROM products p
         LEFT JOIN product_gallery pg ON p.id = pg.product_id
@@ -31,35 +32,18 @@ public function getAll() {
     
     $products = [];
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $attributesArray = explode('||', $row['attributes']);
-        $attributes = [];
-
-        foreach ($attributesArray as $attr) {
-            if($attr){
-                list($attribute, $value) = explode('|', $attr);
-                if (!isset($attributes[$attribute])) {
-                    $attributes[$attribute] = [
-                        'name' => $attribute,
-                        'items' => []
-                    ];
-                }
-                $attributes[$attribute]['items'][] = ['value' => $value];
-            }
-        }
-
-        // Convert attributes associative array to indexed array
-        $attributes = array_values($attributes);
-        
+        $gallery = explode('|', $row['gallery']);
+        $attributes = $this->parseAttributes($row['attributes']);
         $products[] = new Product(
             $row['id'],
             $row['name'],
-            $row['brand'],
             (bool)$row['in_stock'],
-            $row['price'],
-            $row['category'],
             strval($row['description']),
+            $row['brand'],
+            $row['category'],
+            $gallery,
             $attributes,
-            explode('|', $row['gallery'])
+            $row['price'],
         );
     }
     return $products;
@@ -70,7 +54,7 @@ public function getProductById($productId) {
             p.id, p.name, p.in_stock, p.description, p.brand,
             GROUP_CONCAT(DISTINCT ca.name) AS category,
             GROUP_CONCAT(DISTINCT pg.images) AS gallery,
-            GROUP_CONCAT(CONCAT_WS('|', pa.attribute, pa.values) SEPARATOR '||') AS attributes,
+            GROUP_CONCAT(CONCAT_WS('|', pa.attribute, pa.values,pa.displayValue,pa.type) SEPARATOR '||') AS attributes,
             GROUP_CONCAT(DISTINCT CONCAT_WS('', pr.amount, pr.currency)) AS price
         FROM products p
         LEFT JOIN product_gallery pg ON p.id = pg.product_id
@@ -82,38 +66,22 @@ public function getProductById($productId) {
     ");
     $stmt->bindParam('productId' , $productId);
     $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result) {
-        $attributesArray = explode('||', $result['attributes']);
-        $attributes = [];
-
-        foreach ($attributesArray as $attr) {
-            if($attr){
-                list($attribute, $value) = explode('|', $attr);
-                if (!isset($attributes[$attribute])) {
-                    $attributes[$attribute] = [
-                        'name' => $attribute,
-                        'items' => []
-                    ];
-                }
-                $attributes[$attribute]['items'][] = ['value' => $value];
-            }
-        }
-
-        // Convert attributes associative array to indexed array
-        $attributes = array_values($attributes);
-        
+    if ($row) {
+        $gallery = explode('|', $row['gallery']);
+        $attributes = $this->parseAttributes($row['attributes']);
+        $price = $row['price'];
         $product = new Product(
-            $result['id'],
-            $result['name'],
-            $result['brand'],
-            (bool)$result['in_stock'],
-            $result['price'],
-            $result['category'],
-            strval($result['description']),
+            $row['id'],
+            $row['name'],
+            $row['in_stock'],
+            $row['description'],
+            $row['brand'],
+            $row['category'],
+            $gallery,
             $attributes,
-            explode('|', $result['gallery'])
+            $price
         );
         return $product;
     } else {
@@ -123,36 +91,49 @@ public function getProductById($productId) {
 
 public function getCategories() {
     $stmt=$this->pdo->query("
-        SELECT * FROM categories WHERE 1
+        SELECT * FROM categories 
     ");
-    $categories_array = [];
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
-        array_push($categories_array, $result);
-    }
-    if ($categories_array){
-        return $categories_array;
-    }
-}
+    $categories = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            
+            $category = new Category(
+                $row['id'],
+                $row['name']
+            );
 
-}
-
-
-/* 
-
-function separateOddEvenIndices($arr) {
-        $evenIndexElements = [];
-        $oddIndexElements = [];
-    
-        foreach ($arr as $index => $value) {
-            if ($index % 2 == 0) {
-                $evenIndexElements[] = $value;
-            } else {
-                $oddIndexElements[] = $value;
-            }
+            $categories[] = $category;
         }
-    
-        return [$evenIndexElements, $oddIndexElements];
+        return $categories;
+}
+private function parseAttributes($attributesStr) {
+    $result = [];
+    $attributes = explode('||', $attributesStr);
+
+    foreach ($attributes as $attribute) {
+        if (empty($attribute)) {
+            continue;
+        }
+        list($name, $valuesStr, $displayValuesStr, $type) = explode('|', $attribute);
+        $values = explode(',', $valuesStr);
+        $displayValues = explode(',', $displayValuesStr);
+        $items = [];
+
+        foreach ($values as $index => $value) {
+            $items[] = [
+                'displayValue' => $displayValues[$index],
+                'value' => $value,
+            ];
+        }
+
+        $result[] = [
+            'id' => $name,
+            'items' => $items,
+            'name' => $name,
+            'type' => $type,
+        ];
     }
+    
+    return $result;
+}
 
-
-*/
+}

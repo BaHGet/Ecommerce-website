@@ -4,26 +4,26 @@ namespace App\Models;
 
 
 class Product {
-    private $id;
-    private $name;
-    private $inStock;
-    private $gallery;
-    private $description;
-    private $category;
-    private $attributes;
-    private $brand;
-    private $price;
+    public $id;
+    public $name;
+    public $inStock;
+    public $gallery;
+    public $description;
+    public $category;
+    public $attributes;
+    public $brand;
+    public $price;
 
-    public function __construct($id, $name,  $brand, $inStock, $price, $category, $description, $attributes, $gallery) {
+    public function __construct($id, $name, $in_stock, $description, $brand, $category, $gallery, $attributes, $price) {
         $this->id = $id;
         $this->name = $name;
-        $this->brand = $brand;
-        $this->inStock = $inStock;
-        $this->price = $price;
-        $this->category = $category;
+        $this->in_stock = $in_stock;
         $this->description = $description;
-        $this->attributes = $attributes;
+        $this->brand = $brand;
+        $this->category = $category;
         $this->gallery = $gallery;
+        $this->attributes = $attributes;
+        $this->price = $price;
     }
 
     public function toArray() {

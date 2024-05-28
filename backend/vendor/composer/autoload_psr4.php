@@ -9,9 +9,13 @@ return array(
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
+    'Services\\' => array($baseDir . '/src/Services'),
+    'Schema\\' => array($baseDir . '/src/Graphql/Schema'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
+    'Models\\' => array($baseDir . '/src/Models'),
     'GraphQL\\' => array($vendorDir . '/webonyx/graphql-php/src'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
+    'Controllers\\' => array($baseDir . '/src/Controllers'),
     'App\\' => array($baseDir . '/src'),
 );

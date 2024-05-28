@@ -1,6 +1,10 @@
 {
     "autoload": {
         "psr-4": {
+            "Models\\": "src/Models/",
+            "Schema\\": "src/Graphql/Schema",
+            "Services\\": "src/Services/",
+            "Controllers\\": "src/Controllers/",
             "App\\": "src/"
         }
     },

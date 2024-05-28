@@ -39,7 +39,7 @@ class Router {
                 }else{
                     // Controller instance not found
                     http_response_code(404);
-                    echo json_encode(['message' => 'Controller instance not found']);
+                    echo json_encode(['message' => 'Controller instance not found for class: ' . $controllerClass]);
                 }
                 return;
             }

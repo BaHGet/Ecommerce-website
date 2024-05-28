@@ -18,10 +18,16 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Services\\' => 9,
+            'Schema\\' => 7,
         ),
         'P' => 
         array (
             'PhpOption\\' => 10,
+        ),
+        'M' => 
+        array (
+            'Models\\' => 7,
         ),
         'G' => 
         array (
@@ -31,6 +37,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         'D' => 
         array (
             'Dotenv\\' => 7,
+        ),
+        'C' => 
+        array (
+            'Controllers\\' => 12,
         ),
         'A' => 
         array (
@@ -51,9 +61,21 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
+        'Services\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Services',
+        ),
+        'Schema\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Graphql/Schema',
+        ),
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Models',
         ),
         'GraphQL\\' => 
         array (
@@ -66,6 +88,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
+        'Controllers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Controllers',
         ),
         'App\\' => 
         array (
