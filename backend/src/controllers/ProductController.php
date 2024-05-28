@@ -27,9 +27,9 @@ class ProductController {
 
     // Action to show a specific product
     public function getProduct() {
-        if (isset($_GET['product_id'])) {
+        if (isset($_GET['id'])) {
             header('Content-Type: application/json');
-            $productId = $_GET['product_id'];
+            $productId = $_GET['id'];
             $product = $this->productService->getProductById($productId);
             if ($product) {
                 echo json_encode($product->toArray());
