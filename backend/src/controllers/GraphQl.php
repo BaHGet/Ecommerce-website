@@ -15,18 +15,14 @@ use App\Services\GraphqlProductService;
 class GraphQL extends ObjectType {
     private $productService;
     private $categoryService;
-    public function __construct(GraphqlProductService $productService,GraphqlCategoryService  $categoryService){
-        $config = [$this->productService = $productService,
-        $this->categoryService = $categoryService];
-        parent::__construct($config);
+    private $pdo ;
+    public function __construct(PDO $pdo){
+        $this->pdo = $pdo;
     }
-    static public function handle() {
+    public function handle() {
         try {
-            $pdo = new PDO('mysql:host=localhost;dbname=scandiweb', 'root', '');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
             $schemaConfig = SchemaConfig::create()
-                ->setQuery(new QueryType($pdo));
+                ->setQuery(new QueryType($this->pdo));
 
             $schema = new Schema($schemaConfig);
         

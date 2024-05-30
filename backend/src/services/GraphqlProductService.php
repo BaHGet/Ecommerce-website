@@ -5,8 +5,6 @@ namespace App\Services;
 use App\Models\Product;
 use PDO;
 
-
-
 class GraphqlProductService {
     private $pdo;
 
