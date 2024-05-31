@@ -584,14 +584,14 @@ class App extends Component {
                     : 
                         Products.filter(product =>product.category === this.state.category)}
                         setTargetedProduct={this.setTargetedProduct} 
-                        SelectedCategory={this.category} 
+                        SelectedCategory={this.state.category} 
                     />}
                 />
                 <Route
                     path='/ProductPage'
                     element={
                     <ProductPage
-                        selectedProduct={Products.filter(product => product.id === this.state.targetedProduct)} 
+                        selectedProductId={this.state.targetedProduct} 
                         setSelectedAtrributes={this.setSelectedAtrributes} 
                     />}
                 />

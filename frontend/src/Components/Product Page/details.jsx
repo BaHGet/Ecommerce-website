@@ -51,7 +51,7 @@ class Details extends Component {
                     <h1>{Product.name}</h1>
                     {Product.attributes.map((attribute, n) => 
                         {
-                            return attribute.name === "Color" ? (
+                            return attribute.id === "Color" ? (
                                 <>
                                 <h1 key={"attribute" + n} className="attribute-name">
                                     {attribute.name + ":"}
@@ -62,7 +62,7 @@ class Details extends Component {
                         
                                     return (
                                         <button key={"item" + n} className={`color-btn-tag ${isSelected ? 'selected-color-btn-tag-overlay':''}`} onClick={() => handleAddAtrribute(item.value,attribute.id,Product.id)}>
-                                            <li  key={"item" + n} className={`color-tag`} style={{ backgroundColor: `${item.value}` }}></li>
+                                            <li  key={"item" + n} className={`color-tag`} style={{ backgroundColor: `${item.displayValue}` }}></li>
                                         </button>
                                     );
                                     })}
@@ -71,7 +71,7 @@ class Details extends Component {
                             ) : (
                                 <>
                                     <h1 key={"attribute" + n} className="attribute-name">
-                                    {attribute.name + ":"}
+                                    {attribute.id + ":"}
                                     </h1>
                                     <ul className={`tags`}>
                                     {attribute.items.map((item, n) => {
@@ -92,7 +92,7 @@ class Details extends Component {
                         style={{fontFamily:'Raleway', fontSize:'15px'}}
                     >reset</button>
                     <h1 className="attribute-name">Price:</h1>
-                    <h2>{Product.prices[0].currency.symbol}{Product.prices[0].amount}</h2>
+                    <h2>{Product.price}</h2>
                     {
                         didUserSelectAnyAttribute ?
                             <button className='add-to-cart' onClick={() => handleAddtoCart()}>Add To Cart</button>

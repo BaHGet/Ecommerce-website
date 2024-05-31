@@ -1,4 +1,7 @@
-query GetAllProducts {
+import { gql, useQuery } from '@apollo/client';
+
+let ProductsQuery = gql`
+query getProducts {
     products {
         id
         name
@@ -18,4 +21,4 @@ query GetAllProducts {
         }
         prices 
     }
-}
+`;

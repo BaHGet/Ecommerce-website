@@ -40,7 +40,6 @@ class ProductCard extends Component {
     render() {
         const {Product, setTargetedProduct} = this.props
         const handleAssignTargetedProduct = (id) =>{
-            // localStorage.setItem('targetedProducted',id)
             setTargetedProduct(id);
         }
         return (
@@ -59,7 +58,7 @@ class ProductCard extends Component {
                             onClick={() => handleAssignTargetedProduct(Product.id)} className='product-image' 
                             style={{backgroundImage:`url(${Product.gallery[0]})`}}
                         >
-                            {Product.inStock?'':<h1 dataid={Product.id} className='out-of-stock'>Out of stock</h1>}
+                            {Product.in_stock?'':<h1 dataid={Product.id} className='out-of-stock'>Out of stock</h1>}
                         </div>
                         <h1 
                             key={Product.id+'name'} 
@@ -73,11 +72,11 @@ class ProductCard extends Component {
                             onClick={() => handleAssignTargetedProduct(Product.id)} 
                             className='product-price'
                         >
-                        {<span className='product-price-symbol'>{Product.prices[0].currency.symbol}</span>}{Product.prices[0].amount} {' '}
+                        {<span className='product-price-symbol'>{Product.price}</span>} {' '}
                         </h2> 
                     </Link>
                     { // if product in stock or if the current element is hovred then the cart btn will not be shown
-                        !Product.inStock || !this.state.Hover.state ?
+                        !Product.in_stock || !this.state.Hover.state ?
                         ''
                     :
                         <button key={Product.id+'btn'} onClick={handleAddToCart} dataid={Product.id} className='quick-shop-btn'></button>
