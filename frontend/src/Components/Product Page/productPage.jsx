@@ -1,6 +1,6 @@
 import {React, Component} from 'react'
 import { Query } from '@apollo/client/react/components';
-import { GET_PRODUCT } from './../../queries';
+import { GET_PRODUCT } from '../../queries';
 import Gallery from './gallery'
 import Details from './details';
 
@@ -8,7 +8,7 @@ class ProductPage extends Component {
   render() {
     const {selectedProductId, setSelectedAtrributes} =this.props || [''];
     return (
-      <Query query={GET_PRODUCT} variables={{id:selectedProductId}}>
+      <Query query={GET_PRODUCT} variables={{id:selectedProductId || localStorage.getItem('targetedProduct')}}>
         {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error :(</p>;

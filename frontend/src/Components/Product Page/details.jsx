@@ -52,7 +52,7 @@ class Details extends Component {
                     {Product.attributes.map((attribute, n) => 
                         {
                             return attribute.id === "Color" ? (
-                                <>
+                                <div data-testid={`product-attribute-${attribute.id.toLowerCase()}`}>
                                 <h1 key={"attribute" + n} className="attribute-name">
                                     {attribute.name + ":"}
                                 </h1>
@@ -67,9 +67,9 @@ class Details extends Component {
                                     );
                                     })}
                                 </ul>
-                                </>
+                                </div>
                             ) : (
-                                <>
+                                <div data-testid={`product-attribute-${attribute.id.toLowerCase().replaceAll(" ","-")}`}>
                                     <h1 key={"attribute" + n} className="attribute-name">
                                     {attribute.id + ":"}
                                     </h1>
@@ -83,7 +83,7 @@ class Details extends Component {
                                         );
                                     })}
                                     </ul>
-                                </>
+                                </div>
                             )
                         })
                     }
@@ -95,15 +95,15 @@ class Details extends Component {
                     <h2>{Product.price}</h2>
                     {
                         didUserSelectAnyAttribute ?
-                            <button className='add-to-cart' onClick={() => handleAddtoCart()}>Add To Cart</button>
+                            <button className='add-to-cart' onClick={() => handleAddtoCart()} data-testid='add-to-cart'>Add To Cart</button>
                         :
                             <>
                                 <div className='not-allowed-overlay'></div>
-                                <button className='add-to-cart not-allowed'>Add To Cart</button>
+                                <button className='add-to-cart not-allowed' data-testid='add-to-cart'>Add To Cart</button>
                             </>
                     }
                     
-                    <p className='product-description'>{parse(Product.description)}</p>
+                    <p className='product-description' data-testid='product-description'>{parse(Product.description)}</p>
                 </div>
             );
         }

@@ -1,5 +1,5 @@
 import {React, Component} from 'react'
-import trolley from '../../assets/trolley.png'
+import trolley from './../../../assets/trolley.png'
 import './cart-style.css'
 import Bag from './Bag';
 

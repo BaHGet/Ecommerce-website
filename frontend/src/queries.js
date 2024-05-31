@@ -27,10 +27,7 @@ export const GET_PRODUCT = gql`
       product(id: $id) {
         id
         name
-        brand
         price
-        in_stock
-        category
         attributes{
             id
             items{

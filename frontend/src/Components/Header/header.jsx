@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Cart from './cart'
+import Cart from './Cart/cart'
 import logo from '../../assets/logo.png'
 import './nav-bar.css'
 import CategoryList from './categoryList'
@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component {
   render() {
-    const {category, setSelectedCategory, arrayOfAtrributes,Products} = this.props
+    const {selectedCategory, setSelectedCategory, arrayOfAtrributes, selectedProductId} = this.props
     return (
       <header>
-        <CategoryList category={category} setSelectedCategory={setSelectedCategory} />
+        <CategoryList selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
         <Link to='/'>
           <img alt='logo' src={logo} className='logo'/>
         </Link>
-        <Cart arrayOfAtrributes={arrayOfAtrributes} Products={Products} />
+        <Cart arrayOfAtrributes={arrayOfAtrributes} selectedProductId={selectedProductId} />
       </header>
     );
   }

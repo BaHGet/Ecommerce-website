@@ -1,13 +1,13 @@
 import {React, Component } from 'react';
 import { Query } from '@apollo/client/react/components';
-import { GET_PRODUCTS } from './../../queries';
+import { GET_PRODUCTS } from '../../queries';
 import ProductCard from './ProductCard';
 import "./category-style.css";
 
-export default class Category extends Component {
+export default class Main extends Component {
 
   render() {
-    const { Products, setTargetedProduct, SelectedCategory} = this.props;
+    const { setTargetedProduct, SelectedCategory } = this.props;
     return (
       <Query query={GET_PRODUCTS}>
         {({ loading, error, data }) => {
@@ -15,7 +15,7 @@ export default class Category extends Component {
             if (error) return <p>Error :(</p>;
 
             return (
-              <div className='products-gallery'>
+              <div dataid='gallery' className='products-gallery'>
                 {data.products.map((product,r) =>{
                 
                     return  SelectedCategory === 'all' ?

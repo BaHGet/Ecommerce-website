@@ -44,7 +44,7 @@ class Gallery extends Component {
                 this.setGalleryArrayLength(Product.gallery.length)
             }
             return (
-                <div className='gallery product-contanier'>
+                <div className='gallery product-contanier' data-testid='product-gallery'>
                     <div className='side-overview'>
                     {Product.gallery.map((url,num) =>{
                         return(<img className={`product-images ${this.state.imageIndex === num ? 'selected-img' : ''}`} alt='Product' src={url}/>);

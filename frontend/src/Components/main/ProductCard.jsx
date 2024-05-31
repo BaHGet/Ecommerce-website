@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import "./category-style.css";
 import { Link } from 'react-router-dom';
 
-
-
 const handleAddToCart = () =>{
     //To-Do
     console.log('clicked')
@@ -20,7 +18,7 @@ class ProductCard extends Component {
     }
     
     setHoveringStateTrue = (e)=> {
-        const id =e.target.attributes.dataid.value;
+        let id =e.target.attributes.dataid.value;
         this.setState(() =>({
             Hover:{
                 state:true,
@@ -29,7 +27,7 @@ class ProductCard extends Component {
         }));
     }
     setHoveringStateFalse = (e)=> {
-        const id =e.target.attributes.dataid.value || '';
+        let id =e.target.attributes.dataid.value;
         this.setState(() =>({
             Hover:{
                 state:false,
@@ -50,8 +48,9 @@ class ProductCard extends Component {
                     onMouseEnter={this.setHoveringStateTrue} 
                     onMouseLeave={this.setHoveringStateFalse} 
                     className='product-card'
+                    data-testid={`product-${Product.id}`}
                 >
-                    <Link to="/ProductPage">
+                    <Link dataid={Product.id} to="/ProductPage">
                         <div 
                             key={Product.id+'image'} 
                             dataid={Product.id} 
@@ -84,6 +83,7 @@ class ProductCard extends Component {
                             onClick={handleAddToCart}
                             dataid={Product.id}
                             className='quick-shop-btn'
+                            data-testid='cart-btn'
                         ></button>
                     }
                 </div>

@@ -22,9 +22,3 @@
     text-decoration: underline;
     text-underline-offset: 20px;
 }
-
-.hide{
-    opacity: 0;
-    display: none;
-    cursor:not-allowed;
-}

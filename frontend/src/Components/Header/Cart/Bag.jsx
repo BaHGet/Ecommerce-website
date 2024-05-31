@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import './cart-style.css'
-import '../Product Page/details-style.css'
+import './cart-style.css';
 
 
 export default class Bag extends Component {
