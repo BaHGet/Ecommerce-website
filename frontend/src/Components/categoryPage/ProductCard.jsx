@@ -29,7 +29,7 @@ class ProductCard extends Component {
         }));
     }
     setHoveringStateFalse = (e)=> {
-        const id =e.target.attributes.dataid.value;
+        const id =e.target.attributes.dataid.value || '';
         this.setState(() =>({
             Hover:{
                 state:false,
@@ -72,14 +72,19 @@ class ProductCard extends Component {
                             onClick={() => handleAssignTargetedProduct(Product.id)} 
                             className='product-price'
                         >
-                        {<span className='product-price-symbol'>{Product.price}</span>} {' '}
+                        {<span className='product-price-symbol' dataid={Product.id} >{Product.price}</span>} {' '}
                         </h2> 
                     </Link>
                     { // if product in stock or if the current element is hovred then the cart btn will not be shown
                         !Product.in_stock || !this.state.Hover.state ?
                         ''
                     :
-                        <button key={Product.id+'btn'} onClick={handleAddToCart} dataid={Product.id} className='quick-shop-btn'></button>
+                        <button
+                            key={Product.id+'btn'}
+                            onClick={handleAddToCart}
+                            dataid={Product.id}
+                            className='quick-shop-btn'
+                        ></button>
                     }
                 </div>
     
