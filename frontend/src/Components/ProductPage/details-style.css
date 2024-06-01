@@ -104,13 +104,6 @@
     background-color: #808080;
     cursor: none;
 }
-.not-allowed-overlay{
-    position: absolute;
-    width: 400px;
-    height: 52px;
-    background-color: transparent;
-    z-index: 999;
-}
 .product-description{
     height: fit-content;
     font-family: "Roboto", sans-serif;

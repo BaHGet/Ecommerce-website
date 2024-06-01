@@ -69,7 +69,7 @@ export default class Bag extends Component {
                 <h3>Total: </h3>
                 <span>${Number.parseFloat(totalPrice).toFixed(2)}</span>
                 </div>
-                <button className='place-order' onClick={() => (localStorage.clear(), window.location.pathname = '/')}>Place Order</button>
+                <button className={`place-order ${totalItems === 0 ? 'not-allowed' : ''}`} onClick={() => (localStorage.clear(), window.location.pathname = '/')}>Place Order</button>
             </div>
         )
     }
