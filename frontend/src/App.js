@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header/header.jsx";
 import Main from "./Components/main/main.jsx";
-import ProductPage from "./Components/Product Page/productPage.jsx";
+import ProductPage from "./Components/ProductPage/productPage.jsx";
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class App extends Component {
   }
   
   componentDidMount() {
-    this.setTargetedProduct();
+    this.setTargetedProduct(localStorage.getItem("targetedProduct") || this.state.targetedProduct);
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.arrayOfAttributes !== this.state.arrayOfAttributes) {
@@ -46,13 +46,28 @@ class App extends Component {
     }
   };
 
-    addToCart = (item) => {
-    this.setState(
-      (prevState) => ({
-        cart: [...prevState.cart, item],
-      }),
-      () => localStorage.setItem("cart", JSON.stringify(this.state.cart))
-    );
+  addToCart = (newItem) => {
+    this.setState((prevState) => {
+      const cart = [...prevState.cart];
+      
+      const existingItemIndex = cart.findIndex(
+        (item) =>
+          item.productId === newItem.productId &&
+          Object.keys(item.attributes).length === Object.keys(newItem.attributes).length &&
+          Object.keys(item.attributes).every(key => item.attributes[key] === newItem.attributes[key])
+          
+      );
+      console.log(existingItemIndex)
+      if (existingItemIndex !== -1) {
+        // If item exists, update the quantity
+        cart[existingItemIndex].quantity += 1;
+      } else {
+        // If item doesn't exist, add it to the cart
+        cart.push(newItem);
+      }
+
+      return { cart };
+    }, () => localStorage.setItem("cart", JSON.stringify(this.state.cart)));
   };
 
   updateCart = (cart) => {

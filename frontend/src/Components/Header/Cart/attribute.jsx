@@ -15,7 +15,7 @@ export default class Attribute extends Component {
                         return (
                             attribute.id === "Color" ?
                             (
-                                <button
+                                <span
                                     key={item.value}
                                     // onClick={() => this.handleColorChange(item.value)}
                                     className={'cart-color-btn-tag' + (selected ? ' selected-cart-color-btn-tag-overlay' : '')}
@@ -24,9 +24,9 @@ export default class Attribute extends Component {
                                         className={`cart-color-tag` } 
                                         style={{ backgroundColor: `${item.value}` }}
                                     ></li>
-                                </button>
+                                </span>
                             ) : (
-                                <button
+                                <span
                                     key={item.value}
                                     // onClick={() => this.handleColorChange(item.value)}
                                     className={'cart-btn-tag' + (selected ? ' selected-cart-btn-tag-overlay' : '')}
@@ -34,7 +34,7 @@ export default class Attribute extends Component {
                                     <li
                                         className={`cart-tag` + (selected ? ' selected-cart-tag-overlay' : '')}
                                     >{item.value}</li>
-                                </button>
+                                </span>
                             )
                         )
                     })}

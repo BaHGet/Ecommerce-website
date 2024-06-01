@@ -66,9 +66,10 @@ export default class Bag extends Component {
                         }}</Query>
                 ))}
                 <div className='total'>
-                <h3>Total: ${totalPrice}</h3>
+                <h3>Total: </h3>
+                <span>${Number.parseFloat(totalPrice).toFixed(2)}</span>
                 </div>
-                <button className='place-order' onClick={() => localStorage.clear()}>Place Order</button>
+                <button className='place-order' onClick={() => (localStorage.clear(), window.location.pathname = '/')}>Place Order</button>
             </div>
         )
     }

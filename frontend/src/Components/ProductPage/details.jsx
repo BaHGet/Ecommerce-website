@@ -19,6 +19,7 @@ class Details extends Component {
     handleAddToCart = () => {
         const { Product, addToCart } = this.props;
         const { selectedAttributes } = this.state;
+
         if ( Object.keys(selectedAttributes).length === Product.attributes.length) {
         const cartItem = {
             productId: Product.id,
@@ -35,7 +36,8 @@ class Details extends Component {
     render() {
         const { Product } = this.props
         const { selectedAttributes } = this.state;
-        const allAttributesSelected = Object.keys(selectedAttributes).length === Product.attributes.length;
+        const allAttributesSelected = (Object.keys(selectedAttributes).length === Product.attributes.length) && Product.in_stock;
+        
         if(Product){
             return (
                 <div className="product-details">
@@ -94,7 +96,7 @@ class Details extends Component {
                     Add To Cart
                     </button>
                     
-                    <p className='product-description' data-testid='product-description'>{parse(Product.description)}</p>
+                    <p className='product-description' data-testid='product-description'>{parse(Product.description.replaceAll('\\n', ''))}</p>
                 </div>
             );
         }

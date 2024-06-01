@@ -25,14 +25,14 @@ class Cart extends Component {
 
     return (
       isExpand ? 
-        <div className='cart-container'>
+        <div className='cart-container' data-testid='cart-btn'>
           <img
             alt='icon'
             src={trolley}
             className='trolley'
             onClick={handleChageExpandState}
           />
-          <span className='badge'>{totalItems}</span>
+          { totalItems ? <span className='badge'>{totalItems}</span> : '' }
           <Bag 
             cart={cart}
             updateCart={updateCart}
@@ -42,14 +42,14 @@ class Cart extends Component {
           <div className='cart-background' onClick={handleChageExpandState}></div>
         </div>
       :
-        <div className='cart-container'>
+        <div className='cart-container' data-testid='cart-btn'>
           <img
             alt='icon'
             src={trolley}
             className='trolley'
             onClick={handleChageExpandState}
           />
-          <span className='badge'>{totalItems}</span>
+          { totalItems ? <span className='badge'>{totalItems}</span> : '' }
         </div>
     );
   }

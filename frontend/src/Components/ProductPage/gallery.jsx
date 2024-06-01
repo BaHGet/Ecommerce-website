@@ -52,7 +52,7 @@ class Gallery extends Component {
                     </div>
                     <div className='slide-show'>
                         {this.state.gallaryLength ===1? '':
-                            <div className='slide-show-btns'>
+                            <div className='slide-show-btns'>  
                                 <button className='left-slide-show-btn' onClick={()=> handleDiscrementImageIndex(this.state.imageIndex,Product.gallery.length)}></button>
                                 <button className='right-slide-show-btn' onClick={()=> handleIncrementImageIndex(this.state.imageIndex,Product.gallery.length)}></button>
                             </div>
