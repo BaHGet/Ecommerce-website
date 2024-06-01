@@ -1,6 +1,11 @@
+body{
+    padding: 0;
+    margin: 0;
+}
 a{
     text-decoration: none;
     color: inherit;
+
 }
 
 .products-gallery{
@@ -30,6 +35,7 @@ a{
     width: 98%;
     height: 70%;
     margin: auto;
+    
     background-position: center;
     background-size:contain;
     background-clip: content-box;

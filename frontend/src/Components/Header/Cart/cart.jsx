@@ -8,93 +8,49 @@ class Cart extends Component {
     super(props);
     this.state = {
       isExpand:false,
-      SelectedItems:[],
-      Items:[],
     };
   }
-  /* componentDidUpdate(prevProps, prevState){
-      if(prevState.SelectedItems !== this.state.SelectedItems ){
-          
-      }
-  } */
-  componentDidMount(){
-    this.setSelectedItems()
+  
+  setExpand = (state) => {
+    this.setState({ isExpand: state });
   }
-  componentDidUpdate(prevProps, prevState){
-    /* if(prevProps.arrayOfAttributes !== this.props.arrayOfAttributes){
-      return localStorage.setItem(
-        `${this.props.arrayOfAttributes.item}`,
-        JSON.stringify(this.props.arrayOfAttributes)
-      );
-    } */
-  }
-  setSelectedItems = (ele) =>{
-    const attributes = this.props.arrayOfAttributes;
-    const SelectedItems = this.state.SelectedItems
 
-    attributes.map(attribute =>{
-        if(SelectedItems.filter(Item => Item.item === attribute.item).length ===0){
-          this.setState((prev)=>({
-            SelectedItems:[...prev.SelectedItems,
-              JSON.parse(localStorage.getItem(`${attribute.item}~${attribute.name}`))
-            ]
-          }))
-        }
-    })
-    if(SelectedItems){
-      SelectedItems.map(ele =>{
-          for(let i = SelectedItems.length -1 ; i>=0 ; i--){
-              if(SelectedItems[i].item === ele.item && SelectedItems[i].value !== ele.value){
-                  let arr = {
-                      id:SelectedItems[i].item,
-                      attributes:[
-                          {name:SelectedItems[i].name,value:SelectedItems[i].value}
-                          ,{name:ele.name,value:ele.value}
-                      ]
-                  }
-                  this.setState((prev)=>({
-                      Items:[...prev.Items, arr]
-                  }))
-              }  
-          }
-      })
-  }
-    
-  }
-  setExpand = (state) =>{
-    this.setState(() =>({
-      isExpand:state
-    }));
-  }
   render() {
-    const {arrayOfAttributes, selectedProductId} = this.props
-    let isExpand = this.state.isExpand
-    const handleChageExpandState = () =>{
+    const { cart, updateCart } = this.props;
+    const { isExpand } = this.state;
+    const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const handleChageExpandState = () => {
       this.setExpand(!isExpand);
     }
+
     return (
       isExpand ? 
-        <>
+        <div className='cart-container'>
           <img
             alt='icon'
             src={trolley}
             className='trolley'
-            onClick={() => handleChageExpandState()}
+            onClick={handleChageExpandState}
           />
+          <span className='badge'>{totalItems}</span>
           <Bag 
-            arrayOfAttributes={arrayOfAttributes} 
-            SelectedItems={this.state.SelectedItems}
-            selectedProductId={selectedProductId}
+            cart={cart}
+            updateCart={updateCart}
+            totalItems={totalItems}
           />
-          <div className='cart-background'></div>
-        </>
+
+          <div className='cart-background' onClick={handleChageExpandState}></div>
+        </div>
       :
-        <img
-          alt='icon'
-          src={trolley}
-          className='trolley'
-          onClick={() => handleChageExpandState()}
-        />
+        <div className='cart-container'>
+          <img
+            alt='icon'
+            src={trolley}
+            className='trolley'
+            onClick={handleChageExpandState}
+          />
+          <span className='badge'>{totalItems}</span>
+        </div>
     );
   }
 }

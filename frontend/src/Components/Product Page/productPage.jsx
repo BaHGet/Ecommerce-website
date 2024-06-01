@@ -6,7 +6,7 @@ import Details from './details';
 
 class ProductPage extends Component {
   render() {
-    const {selectedProductId, setSelectedAttributes} =this.props || [''];
+    const {selectedProductId,addToCart} =this.props || [''];
     return (
       <Query query={GET_PRODUCT} variables={{id:selectedProductId || localStorage.getItem('targetedProduct')}}>
         {({ loading, error, data }) => {
@@ -17,7 +17,7 @@ class ProductPage extends Component {
               <div className='products-gallery'>
                   <div className='product-contanier'>
                     <Gallery Product={data.product || ''} />
-                    <Details Product={data.product || ''} setSelectedAttributes={setSelectedAttributes} />
+                    <Details Product={data.product || ''} addToCart={addToCart} />
                   </div>
               </div>
             );            

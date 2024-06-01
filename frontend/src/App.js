@@ -12,7 +12,7 @@ class App extends Component {
       targetedProduct: "",
       selectedCategory: "all",
       arrayOfAttributes: [],
-      cart: [],
+      cart: JSON.parse(localStorage.getItem("cart")) || [],
     };
   }
   componentWillUnmount() {}
@@ -29,6 +29,7 @@ class App extends Component {
     
     }
   }
+
   setTargetedProduct = (id) => {
     const Id = id;
     if (id !== undefined) localStorage.setItem("targetedProduct", Id);
@@ -44,15 +45,18 @@ class App extends Component {
       }));
     }
   };
-  setSelectedAttributes = (array) => {
-    this.setState(() => ({
-      arrayOfAttributes: [array],
-    }));
+
+    addToCart = (item) => {
+    this.setState(
+      (prevState) => ({
+        cart: [...prevState.cart, item],
+      }),
+      () => localStorage.setItem("cart", JSON.stringify(this.state.cart))
+    );
   };
-  addToCart = (item) => {
-    this.setState((prev) => ({
-      cart: [...prev.cart, item],
-    }));
+
+  updateCart = (cart) => {
+    this.setState({ cart }, () => localStorage.setItem("cart", JSON.stringify(cart)));
   };
 
   render() {
@@ -61,8 +65,9 @@ class App extends Component {
         <Header
           selectedCategory={this.state.selectedCategory}
           setSelectedCategory={this.setSelectedCategory}
-          arrayOfAttributes={this.state.arrayOfAttributes}
-          selectedProductId={this.state.targetedProduct}
+          cart={this.state.cart}
+          updateCart={this.updateCart}
+          id={this.state.targetedProduct}
         />
         <Routes>
           <Route
@@ -79,7 +84,7 @@ class App extends Component {
             element={
               <ProductPage
                 selectedProductId={this.state.targetedProduct}
-                setSelectedAttributes={this.setSelectedAttributes}
+                addToCart={this.addToCart}
               />
             }
           />

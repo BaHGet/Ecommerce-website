@@ -1,64 +1,66 @@
 import React, { Component } from 'react'
+import { Query } from '@apollo/client/react/components';
+import { GET_PRODUCT } from './../../../queries';
 import './cart-style.css';
-import Product from './product';
 
 
 export default class Bag extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            numberOfItems:0,
-            Items:[],
-        }
-    }
-    componentDidMount(){
-        // this.setItems()
+    incrementQuantity = (index) => {
+        const { cart, updateCart } = this.props;
+        const updatedCart = [...cart];
+        updatedCart[index].quantity += 1;
+        updateCart(updatedCart);
     }
     
-    setItems =()=>{
-        const SelectedItems = JSON.parse(localStorage.getItem('selectedItems')) || this.props.SelectedItems
-        if(SelectedItems){
-            SelectedItems.map(ele =>{
-                for(let i = SelectedItems.length -1 ; i>=0 ; i--){
-                    if(SelectedItems[i].item === ele.item && SelectedItems[i].value !== ele.value){
-                        let arr = {
-                            id:SelectedItems[i].item,
-                            attributes:[
-                                {name:SelectedItems[i].name,value:SelectedItems[i].value}
-                                ,{name:ele.name,value:ele.value}
-                            ]
-                        }
-                        this.setState((prev)=>({
-                            Items:[...prev.Items, arr]
-                        }))
-                    }  
-                }
-            })
+    decrementQuantity = (index) => {
+        const { cart, updateCart } = this.props;
+        const updatedCart = [...cart];
+        if (updatedCart[index].quantity > 1) {
+            updatedCart[index].quantity -= 1;
+        } else {
+            updatedCart.splice(index, 1);
         }
+        updateCart(updatedCart);
     }
     
     render() {
-        const {arrayOfAttributes, SelectedItems, selectedProductId} = this.props
-        const handleCardItems = () =>{
-
-        }
-        let numberOfItems = arrayOfAttributes.length || 0;
+        const { cart ,totalItems } = this.props;
+        const totalPrice = cart.reduce((acc, item) => acc + item.price.replace('$','') * item.quantity, 0);
+        console.log(totalItems)
+    
         return (
             <div className='cart'>
-                <h2 className='bag-count'>My Bag, <span className='count'>{numberOfItems}</span></h2>
-            {arrayOfAttributes.map((array) => {
-                return(
-                        
-                        <div className='bag-contant'>
-                            <Product selectedProductId={array[0].item} selectedAttributes={array} />
-                        </div>
-                            
-                );
-            })}
-                <div className='total'></div>
-                <button className='place-order'>Place Order</button>
+                <h2>My Bag, <span>{totalItems} {totalItems === 1 ? 'Item' : 'Items'}</span></h2>
+                {cart.map((item, index) => (
+                    <Query key={index} query={GET_PRODUCT} variables={{ id: item.productId }}>
+                        {({ loading, error, data }) => {
+                            let product = data.product;
+                            if (loading) return <p>Loading...</p>;
+                            if (error) return <p>Error :(</p>;
+                                return (
+                                    <div className='bag-content' key={index}>
+                                        <div className='cart-product-details'>
+                                            <h2>{product.name}</h2>
+                                            <p>{product.price}</p>
+                                            {Object.entries(item.attributes).map(([name, value]) => (
+                                                <p key={name}>{name}: {value}</p>
+                                            ))}
+                                        </div>
+                                        <div className='cart-product-quantity'>
+                                            <button onClick={() => this.incrementQuantity(index)}>+</button>
+                                            <span>{item.quantity}</span>
+                                            <button onClick={() => this.decrementQuantity(index)}>-</button>
+                                        </div>
+                                        <img src={product.gallery[0]} alt="Product" className='cart-product-image' />
+                                    </div>
+                            );
+                        }}</Query>
+                ))}
+                <div className='total'>
+                <h3>Total: ${totalPrice}</h3>
+                </div>
+                <button className='place-order' onClick={() => alert('Place Order')}>Place Order</button>
             </div>
-
         )
     }
 }

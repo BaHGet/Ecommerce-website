@@ -8,7 +8,7 @@
     right: 50px;
     top: 93px;
     width: 325px;
-    height: 628;
+    height:400px;
     padding: 18px;
     overflow-y: scroll;
     background-color: white;
@@ -18,11 +18,36 @@
 .cart-background{
     position: fixed;
     left: 0;
-    bottom: 0;
+    top: 71px;
     width: 100vw;
     height: 90vh;
     background-color: #80808038;
     z-index: 888;
+}
+
+.cart-container{
+    position: relative;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.badge{
+    position: absolute;
+    width:20px;
+    height:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    right:0;
+    top:0;
+    font-size: 14px;
+    border-radius: 90rem;
+    background-color: #1D1F22;
+    color: white;
 }
 
 .cart-product{

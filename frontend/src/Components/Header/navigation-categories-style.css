@@ -13,12 +13,13 @@
 
 .category-list-items{
     padding-left: 15px;
-    margin: 2px;
+    margin: 0 6px 6px 0 ;
     cursor: pointer;
+    
 }
 
 .selected{
     color: lightgreen;
     text-decoration: underline;
-    text-underline-offset: 20px;
+    text-underline-offset: 10px;
 }
