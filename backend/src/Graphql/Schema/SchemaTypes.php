@@ -7,6 +7,8 @@ class SchemaTypes {
     private static $categoryType;
     private static $attributeType;
     private static $itemType;
+    private static $orderType;
+    
 
     public static function product() {
         return self::$productType ?: (self::$productType = new ProductType());
@@ -22,5 +24,8 @@ class SchemaTypes {
 
     public static function item() {
         return self::$itemType ?: (self::$itemType = new ItemType());
+    }
+    public static function order() {
+        return self::$orderType ?: (self::$orderType = new OrderType());
     }
 }

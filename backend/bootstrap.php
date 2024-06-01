@@ -1,4 +1,5 @@
 <?php
+use App\Services\GraphqlOrderService;
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE');
@@ -27,7 +28,6 @@ use App\Controllers\ProductController;
 use App\Services\GraphqlCategoryService;
 use App\Services\GraphqlProductService;
 use App\Controllers\GraphQL;
-use Schema\QueryType;
 
 $productRepository = new ProductRepository($pdo);
 $productService = new ProductService($productRepository);

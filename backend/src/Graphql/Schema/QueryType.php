@@ -6,6 +6,7 @@ use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 use App\Services\GraphqlProductService;
 use App\Services\GraphqlCategoryService;
+use App\Services\GraphqlOrderService;
 use Schema\SchemaTypes;
 
 
@@ -13,6 +14,7 @@ class QueryType extends ObjectType {
     public function __construct($pdo) {
         $productService = new GraphqlProductService($pdo);
         $categoryService = new GraphqlCategoryService($pdo);
+        $orderService = new GraphqlOrderService($pdo);
         $config = [
             'name' => 'Query',
             'fields' => [
