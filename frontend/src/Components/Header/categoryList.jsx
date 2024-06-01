@@ -2,6 +2,7 @@ import {React, Component} from 'react';
 import { Query } from '@apollo/client/react/components';
 import { GET_Categories } from '../../queries';
 import './navigation-categories-style.css'
+import Loading from '../loading';
 
 class CategoryList extends Component {
   
@@ -11,7 +12,7 @@ class CategoryList extends Component {
     return (
       <Query query={GET_Categories}>
       {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return <Loading  />;
           if (error) return <p>Error :(</p>;
 
           return (
@@ -23,7 +24,7 @@ class CategoryList extends Component {
                               onClick={(e) =>setSelectedCategory(e)} 
                               className={`category-list-items ${category.name === selectedCategory ? 'selected ':''}`}
                               data-testid={category.name === selectedCategory ? 'active-category-link' : 'category-link'}
-                              >{category.name}</li>
+                              >{category.name.charAt(0).toUpperCase() + category.name.slice(1)}</li>
                   })
                 }
               </ul>

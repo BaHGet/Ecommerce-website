@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header/header.jsx";
 import Main from "./Components/main/main.jsx";
-import ProductPage from "./Components/Product Page/ProductPage.jsx";
+import ProductPage from "./Components/Product Page/productPage.jsx";
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class App extends Component {
       cart: JSON.parse(localStorage.getItem("cart")) || [],
     };
   }
-  componentWillUnmount() {}
+  
   componentDidMount() {
     this.setTargetedProduct();
   }

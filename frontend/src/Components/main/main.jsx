@@ -3,6 +3,7 @@ import { Query } from '@apollo/client/react/components';
 import { GET_PRODUCTS } from '../../queries';
 import ProductCard from './ProductCard';
 import "./category-style.css";
+import Loading from '../loading';
 
 export default class Main extends Component {
 
@@ -11,7 +12,7 @@ export default class Main extends Component {
     return (
       <Query query={GET_PRODUCTS}>
         {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
+            if (loading) return <Loading />;
             if (error) return <p>Error :(</p>;
 
             return (

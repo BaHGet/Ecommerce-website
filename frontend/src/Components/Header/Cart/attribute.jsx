@@ -3,16 +3,15 @@ import './cart-style.css';
 
 export default class Attribute extends Component {
     render() {
-        const {id ,attribute , selectedAttributes} = this.props
-        // console.log(attribute.items, selectedAttributes[0])
+        const {attribute , selectedAttributes} = this.props
+        // console.log(attribute, selectedAttributes)
         return (
             <div className='cart-product-attribute'>
                 <span>{attribute.id}:</span>
                 <ul className={`tags`}>
                     {attribute.items.map((item) => {
-                        let currentSelectedAttributeValue = selectedAttributes.filter(selectedAttribute => (selectedAttribute.name === attribute.id))[0].value
-                        let selected = (currentSelectedAttributeValue === item.value) ? true :  false
-                        // console.log(selected)
+                        const selectedValue = selectedAttributes[attribute.id];
+                        const selected = selectedValue === item.value;
                         return (
                             attribute.id === "Color" ?
                             (

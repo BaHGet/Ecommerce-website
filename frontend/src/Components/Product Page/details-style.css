@@ -73,6 +73,18 @@
 .selected-color-btn-tag-overlay{
     border: 2px solid #5ECE7B  !important;
 }
+.reset-btn{
+    width: 100px;
+    height: 52px;
+    color: white;
+    background-color: #000000;
+    border: none;
+    font-family: "Raleway", sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 24px;
+    cursor:pointer;
+    margin: auto;
+}
 .add-to-cart{
     width: 400px;
     height: 52px;
@@ -85,11 +97,12 @@
     cursor:pointer;
     margin: auto;
 }
-.add-to-cart:hover{
+.add-to-cart:hover:not(.not-allowed){
     background-color: #429257;
 }
 .not-allowed{
     background-color: #808080;
+    cursor: none;
 }
 .not-allowed-overlay{
     position: absolute;

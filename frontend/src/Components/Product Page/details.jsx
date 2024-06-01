@@ -10,7 +10,7 @@ class Details extends Component {
             selectedAttributes: {},
         };
     }
-    setSelectedAttribute = (name, value) => {
+    setSelectedAttribute = (name, value, id) => {
         this.setState((prevState) => ({
             selectedAttributes: { ...prevState.selectedAttributes, [name]: value }
         }));
@@ -19,7 +19,7 @@ class Details extends Component {
     handleAddToCart = () => {
         const { Product, addToCart } = this.props;
         const { selectedAttributes } = this.state;
-        if (Object.keys(selectedAttributes).length === Product.attributes.length) {
+        if ( Object.keys(selectedAttributes).length === Product.attributes.length) {
         const cartItem = {
             productId: Product.id,
             name: Product.name,
@@ -36,39 +36,36 @@ class Details extends Component {
         const { Product } = this.props
         const { selectedAttributes } = this.state;
         const allAttributesSelected = Object.keys(selectedAttributes).length === Product.attributes.length;
-        
-
         if(Product){
-            
             return (
                 <div className="product-details">
                     <h1>{Product.name}</h1>
-                    {Product.attributes.map((attribute, n) => 
+                    {Product.attributes.map((attribute, index) => 
                         {
                             return attribute.id === "Color" ? (
-                                <div data-testid={`product-attribute-${attribute.id.toLowerCase()}`}>
-                                <h1 key={"attribute" + n} className="attribute-name">
+                                <div key={index} data-testid={`product-attribute-${attribute.id.toLowerCase()}`}>
+                                <h1 key={"attribute" + index} className="attribute-name">
                                     {attribute.id + ":"}
                                 </h1>
                                 <ul className={`tags`}>
-                                    {attribute.items.map((item, n) => {
+                                    {attribute.items.map((item, index) => {
                         
                                     return (
-                                        <button key={"item" + n} className={`color-btn-tag ${selectedAttributes[attribute.id] === item.value ? 'selected-color-btn-tag-overlay' : ''}`} onClick={() => this.setSelectedAttribute(attribute.id, item.value)}>
-                                            <li  key={"item" + n} className={`color-tag`} style={{ backgroundColor: `${item.displayValue}` }}></li>
+                                        <button key={"item" + index} className={`color-btn-tag ${selectedAttributes[attribute.id] === item.value ? 'selected-color-btn-tag-overlay' : ''}`} onClick={() => this.setSelectedAttribute(attribute.id, item.value)}>
+                                            <li  key={"item" + index} className={`color-tag`} style={{ backgroundColor: `${item.displayValue}` }}></li>
                                         </button>
                                     );
                                     })}
                                 </ul>
                                 </div>
                             ) : (
-                                <div data-testid={`product-attribute-${attribute.id.toLowerCase().replaceAll(" ","-")}`}>
-                                    <h1 key={"attribute" + n} className="attribute-name">{attribute.id + ":"}</h1>
-                                    <ul className={`tags`}>
-                                    {attribute.items.map((item, n) => {
+                                <div key={index} data-testid={`product-attribute-${attribute.id.toLowerCase().replaceAll(" ","-")}`}>
+                                    <h1 key={"attribute" + index} className="attribute-name">{attribute.id + ":"}</h1>
+                                    <ul key={"attribute-tags" + index} className={`tags`}>
+                                    {attribute.items.map((item, index) => {
                                         return (
-                                        <button key={"item" + n} className="btn-tag"  onClick={() => this.setSelectedAttribute(attribute.id, item.value)}>
-                                            <li key={"item" + n} className={`tag ${selectedAttributes[attribute.id] === item.value ? 'selected-tag-overlay' : ''}`}> {item.value} </li>
+                                        <button key={"item" + index} className="btn-tag"  onClick={() => this.setSelectedAttribute(attribute.id, item.value, Product.id)}>
+                                            <li key={"item" + index} className={`tag ${selectedAttributes[attribute.id] === item.value ? 'selected-tag-overlay' : ''}`}> {item.value} </li>
                                         </button>
                                         );
                                     })}
@@ -77,9 +74,11 @@ class Details extends Component {
                             )
                         })
                     }
+
                     <button
-                        onClick={() =>this.setState(() => ({selectedItems:[]}))}
+                        onClick={() =>this.setState(() => ({selectedAttributes:[]}))}
                         style={{fontFamily:'Raleway', fontSize:'15px'}}
+                        className="reset-btn"
                     >reset</button>
 
                     <h1 className="attribute-name">Price:</h1>
@@ -87,9 +86,10 @@ class Details extends Component {
                     <h2>{Product.price}</h2>
                     
                     <button
-                    className={`add-to-cart ${allAttributesSelected ? '' : 'disabled'}`}
-                    onClick={this.handleAddToCart}
-                    disabled={!allAttributesSelected}
+                        key={Product.id}
+                        className={`add-to-cart ${allAttributesSelected ? '' : 'not-allowed'}`}
+                        onClick={this.handleAddToCart}
+                        disabled={!allAttributesSelected}
                     >
                     Add To Cart
                     </button>
