@@ -1,6 +1,8 @@
 <?php
 
 namespace Schema;
+use GraphQL\Type\Definition\InputObjectType;
+use GraphQL\Type\Definition\Type;
 
 class SchemaTypes {
     private static $productType;
@@ -28,4 +30,13 @@ class SchemaTypes {
     public static function order() {
         return self::$orderType ?: (self::$orderType = new OrderType());
     }
+    public static function orderAttribute() {
+        return new InputObjectType([
+            'name' => 'AttributeInput',
+            'fields' => [
+                'name' => Type::nonNull(Type::string()),
+                'value' => Type::nonNull(Type::string()),
+            ],
+        ]);
+    } 
 }

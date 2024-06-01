@@ -11,10 +11,6 @@ class OrderType extends ObjectType
         $config = [
             'fields' => [
                 'id' => Type::nonNull(Type::string()),
-                'product_id' => Type::nonNull(Type::string()),
-                'quantity' => Type::nonNull(Type::int()),
-                'customer_id' => Type::nonNull(Type::string()),
-                'attributes' => Type::nonNull(Type::string()),
                 'massage' => Type::string(),
             ],
         ];

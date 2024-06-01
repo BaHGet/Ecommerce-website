@@ -9,6 +9,7 @@ use Schema\SchemaTypes;
 
 class MutationType extends ObjectType {
     
+
     public function __construct($pdo){
         $orderService = new GraphqlOrderService($pdo);
         $config = [
@@ -21,7 +22,7 @@ class MutationType extends ObjectType {
                         'product_id' => Type::nonNull(Type::string()),
                         'quantity' => Type::nonNull(Type::int()),
                         'customer_id' => Type::nonNull(Type::string()),
-                        'attributes' => Type::nonNull(Type::string()),
+                        'attributes' => Type::nonNull(Type::listOf(SchemaTypes::orderAttribute())),
                     ],
                     'resolve' => function($root, $args) use ($orderService) {
                         return $orderService->createOrder(

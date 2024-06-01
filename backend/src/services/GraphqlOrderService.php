@@ -13,9 +13,8 @@ class GraphqlOrderService{
     }
 
     public function createOrder($id, $productId, $quantity, $customer_id, $attributes) {
-        echo $id;
-        $attributesJson = json_encode($attributes);
         
+
         $stmt = $this->pdo->prepare("
             INSERT INTO orders (id, product_id, quantity, customer_id, attributes)
             VALUES (:id, :product_id, :quantity, :customer_id, :attributes)
@@ -25,7 +24,7 @@ class GraphqlOrderService{
             'product_id' => $productId,
             'quantity' => $quantity,
             'customer_id' => $customer_id,
-            'attributes' => $attributes,
+            'attributes' => json_encode($attributes),
         ]);
         
         $Order = new Order(
@@ -33,7 +32,7 @@ class GraphqlOrderService{
             $productId,
             $quantity,
             $customer_id,
-            $attributes,
+            json_encode($attributes),
             'Order created successfully.'
         );
 
