@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './cart-style.css';
+import Product from './product';
 
 
 export default class Bag extends Component {
@@ -10,9 +11,12 @@ export default class Bag extends Component {
             Items:[],
         }
     }
+    componentDidMount(){
+        // this.setItems()
+    }
     
     setItems =()=>{
-        const SelectedItems = this.props.SelectedItems
+        const SelectedItems = JSON.parse(localStorage.getItem('selectedItems')) || this.props.SelectedItems
         if(SelectedItems){
             SelectedItems.map(ele =>{
                 for(let i = SelectedItems.length -1 ; i>=0 ; i--){
@@ -34,18 +38,27 @@ export default class Bag extends Component {
     }
     
     render() {
-        const {arrayOfAtrributes,Products, SelectedItems} = this.props
+        const {arrayOfAttributes, SelectedItems, selectedProductId} = this.props
         const handleCardItems = () =>{
 
         }
-        let numberOfItems = this.state.numberOfItems
+        let numberOfItems = arrayOfAttributes.length || 0;
         return (
             <div className='cart'>
-                <div className='bag-count'><h2>My Bag, {numberOfItems }</h2></div>
-                <div className='bag-contant'></div>
+                <h2 className='bag-count'>My Bag, <span className='count'>{numberOfItems}</span></h2>
+            {arrayOfAttributes.map((array) => {
+                return(
+                        
+                        <div className='bag-contant'>
+                            <Product selectedProductId={array[0].item} selectedAttributes={array} />
+                        </div>
+                            
+                );
+            })}
                 <div className='total'></div>
-                <button className='place-order'></button>
+                <button className='place-order'>Place Order</button>
             </div>
+
         )
     }
 }

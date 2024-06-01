@@ -28,6 +28,7 @@ export const GET_PRODUCT = gql`
         id
         name
         price
+        in_stock
         attributes{
             id
             items{

@@ -21,14 +21,15 @@ class Cart extends Component {
     this.setSelectedItems()
   }
   componentDidUpdate(prevProps, prevState){
-    if(prevProps.arrayOfAtrributes !== this.props.arrayOfAtrributes){
-      this.props.arrayOfAtrributes.map(attribute => {
-          return localStorage.setItem(`${attribute.item}~${attribute.name}`, JSON.stringify(attribute));
-      })
-  }
+    /* if(prevProps.arrayOfAttributes !== this.props.arrayOfAttributes){
+      return localStorage.setItem(
+        `${this.props.arrayOfAttributes.item}`,
+        JSON.stringify(this.props.arrayOfAttributes)
+      );
+    } */
   }
   setSelectedItems = (ele) =>{
-    const attributes = this.props.arrayOfAtrributes;
+    const attributes = this.props.arrayOfAttributes;
     const SelectedItems = this.state.SelectedItems
 
     attributes.map(attribute =>{
@@ -66,7 +67,7 @@ class Cart extends Component {
     }));
   }
   render() {
-    const {arrayOfAtrributes, Products} = this.props
+    const {arrayOfAttributes, selectedProductId} = this.props
     let isExpand = this.state.isExpand
     const handleChageExpandState = () =>{
       this.setExpand(!isExpand);
@@ -81,9 +82,9 @@ class Cart extends Component {
             onClick={() => handleChageExpandState()}
           />
           <Bag 
-            arrayOfAtrributes={arrayOfAtrributes} 
-            Products={Products}
+            arrayOfAttributes={arrayOfAttributes} 
             SelectedItems={this.state.SelectedItems}
+            selectedProductId={selectedProductId}
           />
           <div className='cart-background'></div>
         </>

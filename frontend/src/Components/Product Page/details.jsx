@@ -15,15 +15,16 @@ class Details extends Component {
             selectedItems:[...prev.selectedItems, {
                 item:item,
                 name:name,
+                quantity:1,
                 value:value
             }]
         }))
     }
 
     render() {
-        const { Product, setSelectedAtrributes } = this.props
+        const { Product, setSelectedAttributes } = this.props
 
-        const handleAddAtrribute = (attributeValue,attributeName,item) => {
+        const handleAddattribute = (attributeValue,attributeName,item) => {
             const arr = this.state.selectedItems;
             if(arr.filter(ele => ele.name === attributeName).length === 0 ){
                 this.setSelectedItems(attributeName,attributeValue,item);
@@ -40,12 +41,13 @@ class Details extends Component {
             }
         };
         const handleAddtoCart= () =>{
-            setSelectedAtrributes(this.state.selectedItems);
+            setSelectedAttributes(this.state.selectedItems);
+            localStorage.setItem('selectedItems',JSON.stringify(this.state.selectedItems))
             this.setState(() => ({selectedItems:[]}))
         }
 
         if(Product){
-            let didUserSelectAnyAttribute = this.state.selectedItems.length  !== 0 && Product.inStock ? true:false
+            let didUserSelectAnyAttribute = this.state.selectedItems.length  !== 0 && Product.in_stock ? true:false
             return (
                 <div className="product-details">
                     <h1>{Product.name}</h1>
@@ -54,14 +56,14 @@ class Details extends Component {
                             return attribute.id === "Color" ? (
                                 <div data-testid={`product-attribute-${attribute.id.toLowerCase()}`}>
                                 <h1 key={"attribute" + n} className="attribute-name">
-                                    {attribute.name + ":"}
+                                    {attribute.id + ":"}
                                 </h1>
                                 <ul className={`tags`}>
                                     {attribute.items.map((item, n) => {
                                     const isSelected = this.state.selectedItems.filter(Item => Item.value === item.value).length === 1 ? true:false
                         
                                     return (
-                                        <button key={"item" + n} className={`color-btn-tag ${isSelected ? 'selected-color-btn-tag-overlay':''}`} onClick={() => handleAddAtrribute(item.value,attribute.id,Product.id)}>
+                                        <button key={"item" + n} className={`color-btn-tag ${isSelected ? 'selected-color-btn-tag-overlay':''}`} onClick={() => handleAddattribute(item.value,attribute.id,Product.id)}>
                                             <li  key={"item" + n} className={`color-tag`} style={{ backgroundColor: `${item.displayValue}` }}></li>
                                         </button>
                                     );
@@ -77,7 +79,7 @@ class Details extends Component {
                                     {attribute.items.map((item, n) => {
                                         const isSelected = this.state.selectedItems.filter(Item => (Item.name === attribute.id && Item.value === item.value)).length === 1 ? true:false
                                         return (
-                                        <button key={"item" + n} className="btn-tag"  onClick={() => handleAddAtrribute(item.value,attribute.id,Product.id)}>
+                                        <button key={"item" + n} className="btn-tag"  onClick={() => handleAddattribute(item.value,attribute.id,Product.id)}>
                                             <li key={"item" + n} className={`tag ${isSelected ? 'selected-tag-overlay':''}`}> {item.value} </li>
                                         </button>
                                         );
