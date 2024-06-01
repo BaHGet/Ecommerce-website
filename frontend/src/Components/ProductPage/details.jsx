@@ -77,11 +77,16 @@ class Details extends Component {
                         })
                     }
 
-                    <button
-                        onClick={() =>this.setState(() => ({selectedAttributes:[]}))}
-                        style={{fontFamily:'Raleway', fontSize:'15px'}}
-                        className="reset-btn"
-                    >reset</button>
+                {
+                    Product.attributes.length === 0 && Object.keys(selectedAttributes).length  === 0 ? 
+                        ''
+                    :
+                        <button
+                            onClick={() =>this.setState(() => ({selectedAttributes:[]}))}
+                            style={{fontFamily:'Raleway', fontSize:'15px'}}
+                            className="reset-btn"
+                        >reset</button>
+                }
 
                     <h1 className="attribute-name">Price:</h1>
 

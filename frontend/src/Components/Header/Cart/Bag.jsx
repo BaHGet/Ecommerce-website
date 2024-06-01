@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactLoading from 'react-loading';
-import { Query } from '@apollo/client/react/components';
-import { GET_PRODUCT } from './../../../queries';
+import { Query ,Mutation } from '@apollo/client/react/components';
+import { GET_PRODUCT , CREATE_ORDER} from './../../../queries';
 import './cart-style.css';
 import Attribute from './attribute';
 
@@ -24,10 +24,40 @@ export default class Bag extends Component {
         }
         updateCart(updatedCart);
     }
+
+    handlePlaceOrder = async (createOrder) => {
+        const { cart } = this.props;
+        cart.map(async(item, index) =>{
+            let arrayOfAttributes = [];
+            Object.keys(item.attributes).forEach((key) => {
+                arrayOfAttributes.push({"name":key, "value":item.attributes[key]})
+            })
+
+            try {
+                const { data } = await createOrder({
+                    variables: {
+                        id: (index + 1).toString(),
+                        product_id: item.productId,
+                        quantity: item.quantity,
+                        customer_id: localStorage.getItem("USERID"),
+                        attributes: arrayOfAttributes || [],
+                    }    
+                });
+                    if(data){
+                        localStorage.clear()
+                        window.location.pathname = '/'
+                    }
+                } catch (error) {
+                    console.error('Error creating order:', error);
+                    throw error;
+                }
+        });
+    }
     
     render() {
         const { cart ,totalItems } = this.props;
         const totalPrice = cart.reduce((acc, item) => acc + item.price.replace('$','') * item.quantity, 0);
+
 
         return (
             <div className='cart'>
@@ -69,7 +99,9 @@ export default class Bag extends Component {
                 <h3>Total: </h3>
                 <span>${Number.parseFloat(totalPrice).toFixed(2)}</span>
                 </div>
-                <button className={`place-order ${totalItems === 0 ? 'not-allowed' : ''}`} onClick={() => (localStorage.clear(), window.location.pathname = '/')}>Place Order</button>
+                <Mutation mutation={CREATE_ORDER}>
+                    {(createOrder) => ( <button className={`place-order ${totalItems === 0 ? 'not-allowed' : ''}`} onClick={() => this.handlePlaceOrder(createOrder)}>Place Order</button>)}
+                </Mutation>
             </div>
         )
     }

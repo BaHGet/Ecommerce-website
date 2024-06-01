@@ -20,6 +20,7 @@ class CategoryList extends Component {
                 {
                   data.categories.map((category) =>{
                     return <li
+                              key={category.name}
                               dataname={category.name }
                               onClick={(e) =>setSelectedCategory(e)} 
                               className={`category-list-items ${category.name === selectedCategory ? 'selected ':''}`}

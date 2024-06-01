@@ -1,5 +1,6 @@
 import { React, Component } from "react";
 import { Route, Routes } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 import "./App.css";
 import Header from "./Components/Header/header.jsx";
 import Main from "./Components/main/main.jsx";
@@ -17,6 +18,9 @@ class App extends Component {
   }
   
   componentDidMount() {
+    if(!localStorage.getItem("USERID")){
+      localStorage.setItem("USERID", uuidv4());
+    }
     this.setTargetedProduct(localStorage.getItem("targetedProduct") || this.state.targetedProduct);
   }
   componentDidUpdate(prevProps, prevState) {

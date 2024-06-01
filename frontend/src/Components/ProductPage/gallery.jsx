@@ -10,6 +10,10 @@ class Gallery extends Component {
             cart:''
         }
     }
+    componentDidMount(){
+        const {Product} = this.props
+        this.setGalleryArrayLength(Product.gallery.length)
+    }
     setGalleryArrayLength = (index) =>{
         this.setState(()=>({
             gallaryLength:index,
@@ -39,15 +43,16 @@ class Gallery extends Component {
                 this.setImageIndex(length-1)
             }
         }
+        const handleImageSwap = (num) => {
+            this.setImageIndex(num)
+        }
         if(Product){
-            if(this.state.gallaryLength===0){
-                this.setGalleryArrayLength(Product.gallery.length)
-            }
+            
             return (
                 <div className='gallery product-contanier' data-testid='product-gallery'>
                     <div className='side-overview'>
                     {Product.gallery.map((url,num) =>{
-                        return(<img className={`product-images ${this.state.imageIndex === num ? 'selected-img' : ''}`} alt='Product' src={url}/>);
+                        return(<img key={num} className={`product-images ${this.state.imageIndex === num ? 'selected-img' : ''}`} alt='Product' src={url} onClick={()=> handleImageSwap(num)}/>);
                     })}
                     </div>
                     <div className='slide-show'>
