@@ -8,7 +8,7 @@ import Loading from '../loading';
 export default class Main extends Component {
 
   render() {
-    const { setTargetedProduct, SelectedCategory } = this.props;
+    const { setTargetedProduct, SelectedCategory, addToCart } = this.props;
     return (
       <Query query={GET_PRODUCTS}>
         {({ loading, error, data }) => {
@@ -16,14 +16,14 @@ export default class Main extends Component {
             if (error) return <p>Error :(</p>;
 
             return (
-              <div dataid='gallery' className='products-gallery'>
-                {data.products.map((product,r) =>{
+              <div key='gallery' dataid='gallery' className='products-gallery'>
+                {data.products.map((product,index) =>{
                 
                     return  SelectedCategory === 'all' ?
-                      <ProductCard Key={r} Product={product} setTargetedProduct={setTargetedProduct}/>
+                      <ProductCard Key={index} Product={product} setTargetedProduct={setTargetedProduct} addToCart={addToCart}/>
                     :
                       product.category === SelectedCategory ?
-                        <ProductCard Key={r} Product={product} setTargetedProduct={setTargetedProduct}/>
+                        <ProductCard Key={index} Product={product} setTargetedProduct={setTargetedProduct} addToCart={addToCart}/>
                       :
                         ''
                 

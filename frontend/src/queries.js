@@ -9,6 +9,14 @@ export const GET_PRODUCTS = gql`
         in_stock
         category
         gallery
+        
+        attributes{
+            id
+            items{
+                displayValue
+                value
+            }
+        }
       }
     }
 `;

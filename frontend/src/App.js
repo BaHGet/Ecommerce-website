@@ -61,7 +61,6 @@ class App extends Component {
           Object.keys(item.attributes).every(key => item.attributes[key] === newItem.attributes[key])
           
       );
-      console.log(existingItemIndex)
       if (existingItemIndex !== -1) {
         // If item exists, update the quantity
         cart[existingItemIndex].quantity += 1;
@@ -95,6 +94,7 @@ class App extends Component {
               <Main
                 setTargetedProduct={this.setTargetedProduct}
                 SelectedCategory={this.state.selectedCategory}
+                addToCart={this.addToCart}
               />
             }
           />
