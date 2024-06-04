@@ -5,6 +5,7 @@
             "Schema\\": "src/Graphql/Schema",
             "Services\\": "src/Services/",
             "Controllers\\": "src/Controllers/",
+            "Repository\\": "src/repositories/",
             "App\\": "src/"
         }
     },

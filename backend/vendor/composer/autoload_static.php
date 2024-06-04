@@ -21,6 +21,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
             'Services\\' => 9,
             'Schema\\' => 7,
         ),
+        'R' => 
+        array (
+            'Repository\\' => 11,
+        ),
         'P' => 
         array (
             'PhpOption\\' => 10,
@@ -68,6 +72,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         'Schema\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Graphql/Schema',
+        ),
+        'Repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/repositories',
         ),
         'PhpOption\\' => 
         array (

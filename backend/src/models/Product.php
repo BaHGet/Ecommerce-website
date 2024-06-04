@@ -6,7 +6,7 @@ namespace App\Models;
 class Product {
     public $id;
     public $name;
-    public $inStock;
+    public $in_stock;
     public $gallery;
     public $description;
     public $category;
@@ -31,7 +31,7 @@ class Product {
             'id' => $this->id,
             'name' => $this->name,
             'brand' => $this->brand,
-            'inStock' => $this->inStock,
+            'inStock' => $this->in_stock,
             'price' => $this->price,
             'category' => $this->category,
             'description' => $this->description,

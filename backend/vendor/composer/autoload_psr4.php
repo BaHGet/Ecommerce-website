@@ -11,6 +11,7 @@ return array(
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Services\\' => array($baseDir . '/src/Services'),
     'Schema\\' => array($baseDir . '/src/Graphql/Schema'),
+    'Repository\\' => array($baseDir . '/src/repositories'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'Models\\' => array($baseDir . '/src/Models'),
     'GraphQL\\' => array($vendorDir . '/webonyx/graphql-php/src'),
