@@ -36,7 +36,6 @@ export default class Bag extends Component {
             try {
                 const { data } = await createOrder({
                     variables: {
-                        id: (index + 1).toString(),
                         product_id: item.productId,
                         quantity: item.quantity,
                         customer_id: localStorage.getItem("USERID"),
@@ -45,7 +44,8 @@ export default class Bag extends Component {
                 });
                     if(data){
                         localStorage.clear()
-                        window.location.pathname = '/'
+                        window.location.pathname === 'junior-full-stack-test/' ?
+                            window.location.reload() : window.location.pathname = 'junior-full-stack-test/'
                     }
                 } catch (error) {
                     console.error('Error creating order:', error);

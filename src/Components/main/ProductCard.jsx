@@ -68,7 +68,7 @@ class ProductCard extends Component {
                     className='product-card'
                     data-testid={`product-${Product.id}`}
                 >
-                    <Link dataid={Product.id} to="/ProductPage">
+                    <Link dataid={Product.id} to="/junior-full-stack-test/ProductPage">
                         <div
                             dataid={Product.id} 
                             onClick={() => handleAssignTargetedProduct(Product.id)} className='product-image' 

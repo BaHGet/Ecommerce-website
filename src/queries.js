@@ -52,20 +52,18 @@ export const GET_PRODUCT = gql`
 
 export const CREATE_ORDER= gql`
   mutation createOrder(
-    $id: String!
     $product_id: String!
     $quantity: Int!
     $customer_id: String!
     $attributes: [AttributeInput!]!
   ) {
     createOrder(
-      id: $id
       product_id: $product_id
       quantity: $quantity
       customer_id: $customer_id
       attributes: $attributes
     ) {
-      id
+      customer_id
       massage
     }
   }

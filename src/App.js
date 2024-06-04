@@ -43,7 +43,7 @@ class App extends Component {
   };
   setSelectedCategory = (e) => {
     let category = e.target.attributes.dataname.value;
-    if (window.location.pathname === "/") {
+    if (window.location.pathname === "/junior-full-stack-test/") {
       this.setState(() => ({
         selectedCategory: category,
       }));
@@ -89,7 +89,7 @@ class App extends Component {
         />
         <Routes>
           <Route
-            path="junior-full-stack-test/"
+            path="/junior-full-stack-test"
             element={
               <Main
                 setTargetedProduct={this.setTargetedProduct}
@@ -99,7 +99,7 @@ class App extends Component {
             }
           />
           <Route
-            path="junior-full-stack-test//ProductPage"
+            path="/junior-full-stack-test/ProductPage"
             element={
               <ProductPage
                 selectedProductId={this.state.targetedProduct}
