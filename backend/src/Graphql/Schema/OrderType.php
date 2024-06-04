@@ -10,7 +10,8 @@ class OrderType extends ObjectType
     public function __construct() {
         $config = [
             'fields' => [
-                'id' => Type::nonNull(Type::string()),
+                'date' => Type::nonNull(Type::string()),
+                'customer_id' => Type::nonNull(Type::string()),
                 'massage' => Type::string(),
             ],
         ];

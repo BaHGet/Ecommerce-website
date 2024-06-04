@@ -18,7 +18,6 @@ class MutationType extends ObjectType {
                 'createOrder' => [
                     'type' =>SchemaTypes::order(),
                     'args' => [
-                        'id' => Type::nonNull(Type::string()),
                         'product_id' => Type::nonNull(Type::string()),
                         'quantity' => Type::nonNull(Type::int()),
                         'customer_id' => Type::nonNull(Type::string()),
@@ -26,7 +25,6 @@ class MutationType extends ObjectType {
                     ],
                     'resolve' => function($root, $args) use ($orderService) {
                         return $orderService->createOrder(
-                            $args['id'], 
                             $args['product_id'],
                             $args['quantity'], 
                             $args['customer_id'], 
