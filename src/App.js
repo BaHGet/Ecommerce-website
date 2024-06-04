@@ -89,7 +89,7 @@ class App extends Component {
         />
         <Routes>
           <Route
-            path="/"
+            path="junior-full-stack-test/"
             element={
               <Main
                 setTargetedProduct={this.setTargetedProduct}
@@ -99,7 +99,7 @@ class App extends Component {
             }
           />
           <Route
-            path="/ProductPage"
+            path="junior-full-stack-test//ProductPage"
             element={
               <ProductPage
                 selectedProductId={this.state.targetedProduct}
