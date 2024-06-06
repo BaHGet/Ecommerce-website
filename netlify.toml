@@ -1,5 +1,5 @@
 [build]
-  publish = "dist"
+  publish = "/"
   command = "composer install && composer dump-autoload "
 
 [dev]
