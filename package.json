@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "netlify": "^13.1.17"
+  },
+  "scripts": {
+    "start": "git add . && git commit -m \"preper for netf depoly\" && git push origin HEAD:backend && netlify build && netlify deploy --prod"
   }
 }
