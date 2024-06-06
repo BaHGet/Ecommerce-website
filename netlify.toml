@@ -1,4 +1,12 @@
+[build]
+  publish = "dist"
+  command = "composer install && composer dump-autoload "
+
+[dev]
+  command = "php -S localhost:8888 -t "
+  port = 8888
+
 [[redirects]]
-from = "/*
-to = "/index.php"
-status = 200
+  from = "/*"
+  to = "/index.php"
+  status = 200
