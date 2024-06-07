@@ -44,8 +44,8 @@ export default class Bag extends Component {
                 });
                     if(data){
                         localStorage.clear()
-                        window.location.pathname === 'junior-full-stack-test/' ?
-                            window.location.reload() : window.location.pathname = 'junior-full-stack-test/'
+                        window.location.pathname === '/' ?
+                            window.location.reload() : window.location.pathname = '/'
                     }
                 } catch (error) {
                     console.error('Error creating order:', error);

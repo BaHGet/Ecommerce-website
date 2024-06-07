@@ -11,7 +11,7 @@ class Header extends Component {
     return (
       <header>
         <CategoryList selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
-        <Link to='junior-full-stack-test/'>
+        <Link to='/'>
           <img alt='logo' src={logo} className='logo'/>
         </Link>
         <Cart cart={cart} updateCart={updateCart} id={id} />

@@ -12,7 +12,7 @@ const defaultOptions = {
 }
 
 const client = new ApolloClient({
-    uri: "https://scandiweb-test-bahget.000webhostapp.com/index.php/graphql",
+    uri: "http://iroute.mypressonline.com/index.php/graphql",
     cache: new InMemoryCache(),
     defaultOptions: defaultOptions
 });
