@@ -1,0 +1,16 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Models\\": "src/Models/",
+            "Schema\\": "src/Graphql/Schema",
+            "Services\\": "src/Services/",
+            "Controllers\\": "src/Controllers/",
+            "Repository\\": "src/repositories/",
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "webonyx/graphql-php": "^15.11"
+    }
+}
