@@ -60,7 +60,9 @@ export default class Bag extends Component {
 
 
         return (
-            <div className='cart'>
+            <div
+                data-testid="cart-overlay"
+                className='cart'>
                 <h2>My Bag, <span className='count'>{totalItems} {totalItems === 1 ? 'Item' : 'Items'}</span></h2>
                 {cart.map((item, index) => (
                     <Query key={index} query={GET_PRODUCT} variables={{ id: item.productId }}>

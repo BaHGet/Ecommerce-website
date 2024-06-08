@@ -41,7 +41,7 @@ class Details extends Component {
         if(Product){
             return (
                 <div className="product-details">
-                    <h1>{Product.name}</h1>
+                    <h1 data-testid={`product-${Product.name.replaceAll(" ","-")}`} >{Product.name}</h1>
                     {Product.attributes.map((attribute, index) => 
                         {
                             return attribute.id === "Color" ? (

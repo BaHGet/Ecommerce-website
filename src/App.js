@@ -43,7 +43,7 @@ class App extends Component {
   };
   setSelectedCategory = (e) => {
     let category = e.target.attributes.dataname.value;
-    if (window.location.pathname === "/junior-full-stack-test/") {
+    if (window.location.pathname === "/") {
       this.setState(() => ({
         selectedCategory: category,
       }));
