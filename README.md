@@ -6,6 +6,7 @@
     - _React.js_: Front-end library for building user interfaces, managing state, and handling component lifecycle.
   * _PHP_: Backend language for server-side logic and processing.
     - _Laravel_: PHP framework for structuring the backend, including routing, middleware, and MVC architecture.
+    - _MySQL_: Relational database management system for storing and managing data.
   * _GraphQL_: A query language for API, providing a flexible and efficient way to fetch data.
   * _CSS_: Styling language used to create responsive and visually appealing designs.
     - Bootstrap: CSS framework to streamline styling and ensure responsive design.
