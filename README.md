@@ -1,5 +1,5 @@
 # Ecommerce website using PHP & React.js
-> This repository contains a comprehensive eCommerce website project developed as part of a Junior Full Stack Developer test task for Scandiweb. It demonstrates a full spectrum of web development skills to create a fully functional online store, including front-end and back-end technologies.
+> _This repository contains a comprehensive eCommerce website project developed as part of a Junior Full Stack Developer test task for Scandiweb. It demonstrates a full spectrum of web development skills to create a fully functional online store, including front-end and back-end technologies._
 
 ## Programming Languages and Frameworks:
   * _JavaScript_: Utilized for interactive and dynamic client-side functionality.
