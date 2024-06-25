@@ -16,7 +16,7 @@ class Cart extends Component {
   }
 
   render() {
-    const { cart, updateCart } = this.props;
+    const { cart, clearCart, updateCart } = this.props;
     const { isExpand } = this.state;
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
     const handleChageExpandState = () => {
@@ -35,6 +35,7 @@ class Cart extends Component {
           { totalItems ? <span className='badge'>{totalItems}</span> : '' }
           <Bag 
             cart={cart}
+            clearCart={clearCart}
             updateCart={updateCart}
             totalItems={totalItems}
           />

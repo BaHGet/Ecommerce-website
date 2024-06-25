@@ -4,6 +4,7 @@ import { Query ,Mutation } from '@apollo/client/react/components';
 import { GET_PRODUCT , CREATE_ORDER} from './../../../queries';
 import './cart-style.css';
 import Attribute from './attribute';
+import { unmountComponentAtNode } from 'react-dom';
 
 
 export default class Bag extends Component {
@@ -26,7 +27,7 @@ export default class Bag extends Component {
     }
 
     handlePlaceOrder = async (createOrder) => {
-        const { cart } = this.props;
+        const { cart, clearCart } = this.props;
         cart.map(async(item, index) =>{
             let arrayOfAttributes = [];
             Object.keys(item.attributes).forEach((key) => {
@@ -43,9 +44,7 @@ export default class Bag extends Component {
                     }    
                 });
                     if(data){
-                        localStorage.clear()
-                        window.location.pathname === '/' ?
-                            window.location.reload() : window.location.pathname = '/'
+                        clearCart();
                     }
                 } catch (error) {
                     console.error('Error creating order:', error);

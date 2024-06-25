@@ -76,6 +76,9 @@ class App extends Component {
   updateCart = (cart) => {
     this.setState({ cart }, () => localStorage.setItem("cart", JSON.stringify(cart)));
   };
+  clearCart = () => {
+    this.setState({ cart: [] }, () => localStorage.setItem("cart", JSON.stringify([])));
+  };
 
   render() {
     return (
@@ -84,6 +87,7 @@ class App extends Component {
           selectedCategory={this.state.selectedCategory}
           setSelectedCategory={this.setSelectedCategory}
           cart={this.state.cart}
+          clearCart={this.clearCart}
           updateCart={this.updateCart}
           id={this.state.targetedProduct}
         />

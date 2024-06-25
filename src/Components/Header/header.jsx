@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component {
   render() {
-    const {selectedCategory, setSelectedCategory, cart, updateCart, id} = this.props
+    const {selectedCategory, setSelectedCategory, cart, clearCart, updateCart, id} = this.props
     return (
       <header>
         <CategoryList selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
         <Link to='/'>
           <img alt='logo' src={logo} className='logo'/>
         </Link>
-        <Cart cart={cart} updateCart={updateCart} id={id} />
+        <Cart cart={cart} clearCart={clearCart} updateCart={updateCart} id={id} />
       </header>
     );
   }
