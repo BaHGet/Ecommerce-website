@@ -4,9 +4,8 @@ import './cart-style.css';
 export default class Attribute extends Component {
     render() {
         const {attribute , selectedAttributes} = this.props
-        // console.log(attribute, selectedAttributes)
         return (
-            <div className='cart-product-attribute'>
+            <div className='cart-product-attribute' data-testid={`cart-item-attribute-${attribute.id.toLowerCase()}`}>
                 <span>{attribute.id}:</span>
                 <ul className={`tags`}>
                     {attribute.items.map((item) => {
@@ -17,8 +16,8 @@ export default class Attribute extends Component {
                             (
                                 <span
                                     key={item.value}
-                                    // onClick={() => this.handleColorChange(item.value)}
                                     className={'cart-color-btn-tag' + (selected ? ' selected-cart-color-btn-tag-overlay' : '')}
+                                    data-testid={`cart-item-attribute-color-${item.displayValue}${selected ? '-selected' : ''}`}
                                 >
                                     <li
                                         className={`cart-color-tag` } 
@@ -28,8 +27,8 @@ export default class Attribute extends Component {
                             ) : (
                                 <span
                                     key={item.value}
-                                    // onClick={() => this.handleColorChange(item.value)}
                                     className={'cart-btn-tag' + (selected ? ' selected-cart-btn-tag-overlay' : '')}
+                                    data-testid={`cart-item-attribute-${attribute.id.toLowerCase()}-${item.displayValue}${selected ? '-selected' : ''}`}
                                 >
                                     <li
                                         className={`cart-tag` + (selected ? ' selected-cart-tag-overlay' : '')}

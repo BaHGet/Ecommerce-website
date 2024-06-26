@@ -24,33 +24,30 @@ class Cart extends Component {
     }
 
     return (
-      isExpand ? 
         <div className='cart-container' data-testid='cart-btn'>
           <img
             alt='icon'
             src={trolley}
             className='trolley'
+            data-testid='cart-btn'
             onClick={handleChageExpandState}
           />
-          { totalItems ? <span className='badge'>{totalItems}</span> : '' }
-          <Bag 
-            cart={cart}
-            clearCart={clearCart}
-            updateCart={updateCart}
-            totalItems={totalItems}
-          />
+          { totalItems ? 
+            <span className='badge' data-testid="cart-count-bubble">{totalItems}</span> 
+          : '' }
+          {isExpand ?
+            <>
+              <Bag 
+                cart={cart}
+                clearCart={clearCart}
+                updateCart={updateCart}
+                totalItems={totalItems}
+              />
+              <div className='cart-background' onClick={handleChageExpandState}></div>
+            </>
+          :''}
 
-          <div className='cart-background' onClick={handleChageExpandState}></div>
-        </div>
-      :
-        <div className='cart-container' data-testid='cart-btn'>
-          <img
-            alt='icon'
-            src={trolley}
-            className='trolley'
-            onClick={handleChageExpandState}
-          />
-          { totalItems ? <span className='badge'>{totalItems}</span> : '' }
+          
         </div>
     );
   }

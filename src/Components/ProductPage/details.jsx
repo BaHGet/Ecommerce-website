@@ -41,7 +41,7 @@ class Details extends Component {
         if(Product){
             return (
                 <div className="product-details">
-                    <h1 data-testid={`product-${Product.name.replaceAll(" ","-")}`} >{Product.name}</h1>
+                    <h1 data-testid={`product-${Product.name.toLowerCase().replaceAll(" ","-")}`} >{Product.name}</h1>
                     {Product.attributes.map((attribute, index) => 
                         {
                             return attribute.id === "Color" ? (
@@ -53,7 +53,12 @@ class Details extends Component {
                                     {attribute.items.map((item, index) => {
                         
                                     return (
-                                        <button key={"item" + index} className={`color-btn-tag ${selectedAttributes[attribute.id] === item.value ? 'selected-color-btn-tag-overlay' : ''}`} onClick={() => this.setSelectedAttribute(attribute.id, item.value)}>
+                                        <button
+                                            key={"item" + index}
+                                            className={`color-btn-tag ${selectedAttributes[attribute.id] === item.value ?
+                                            'selected-color-btn-tag-overlay' : ''}`} 
+                                            data-testid={`product-attribute-${attribute.id.toLowerCase()}-${item.displayValue}`}
+                                            onClick={() => this.setSelectedAttribute(attribute.id, item.value)}>
                                             <li  key={"item" + index} className={`color-tag`} style={{ backgroundColor: `${item.displayValue}` }}></li>
                                         </button>
                                     );
@@ -66,7 +71,11 @@ class Details extends Component {
                                     <ul key={"attribute-tags" + index} className={`tags`}>
                                     {attribute.items.map((item, index) => {
                                         return (
-                                        <button key={"item" + index} className="btn-tag"  onClick={() => this.setSelectedAttribute(attribute.id, item.value, Product.id)}>
+                                        <button 
+                                        key={"item" + index} 
+                                        className="btn-tag"  
+                                        data-testid={`product-attribute-${attribute.id.toLowerCase()}-${item.displayValue}`}
+                                        onClick={() => this.setSelectedAttribute(attribute.id, item.value, Product.id)}>
                                             <li key={"item" + index} className={`tag ${selectedAttributes[attribute.id] === item.value ? 'selected-tag-overlay' : ''}`}> {item.value} </li>
                                         </button>
                                         );
@@ -94,11 +103,12 @@ class Details extends Component {
                     
                     <button
                         key={Product.id}
-                        className={`add-to-cart ${allAttributesSelected ? '' : 'not-allowed'}`}
+                        className={`add-to-cart${allAttributesSelected ? '' : ' not-allowed'}`}
+                        data-testid="add-to-cart"
                         onClick={this.handleAddToCart}
                         disabled={!allAttributesSelected}
                     >
-                    Add To Cart
+                    ADD TO CART
                     </button>
                     
                     <p className='product-description' data-testid='product-description'>{parse(Product.description.replaceAll('\\n', ''))}</p>

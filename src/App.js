@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       targetedProduct: "",
-      selectedCategory: "all",
+      selectedCategory: localStorage.getItem("selectedCategory") ||"all",
       arrayOfAttributes: [],
       cart: JSON.parse(localStorage.getItem("cart")) || [],
     };
@@ -41,13 +41,12 @@ class App extends Component {
       targetedProduct: Id,
     }));
   };
-  setSelectedCategory = (e) => {
-    let category = e.target.attributes.dataname.value;
-    if (window.location.pathname === "/") {
-      this.setState(() => ({
-        selectedCategory: category,
-      }));
-    }
+
+  setSelectedCategory = (category) => {
+    localStorage.setItem("selectedCategory", category);
+    this.setState(() => ({
+      selectedCategory: category,
+    }));
   };
 
   addToCart = (newItem) => {
@@ -72,7 +71,6 @@ class App extends Component {
       return { cart };
     }, () => localStorage.setItem("cart", JSON.stringify(this.state.cart)));
   };
-
   updateCart = (cart) => {
     this.setState({ cart }, () => localStorage.setItem("cart", JSON.stringify(cart)));
   };
@@ -83,21 +81,51 @@ class App extends Component {
   render() {
     return (
       <>
-        <Header
+        {/* <Header
           selectedCategory={this.state.selectedCategory}
           setSelectedCategory={this.setSelectedCategory}
           cart={this.state.cart}
           clearCart={this.clearCart}
           updateCart={this.updateCart}
           id={this.state.targetedProduct}
-        />
+        /> */}
         <Routes>
           <Route
             path="/"
             element={
               <Main
                 setTargetedProduct={this.setTargetedProduct}
-                SelectedCategory={this.state.selectedCategory}
+                SelectedCategory={"all"}
+                addToCart={this.addToCart}
+              />
+            }
+          />
+          <Route
+            path="/all"
+            element={
+              <Main
+                setTargetedProduct={this.setTargetedProduct}
+                SelectedCategory={"all"}
+                addToCart={this.addToCart}
+              />
+            }
+          />
+          <Route
+            path="/tech"
+            element={
+              <Main
+                setTargetedProduct={this.setTargetedProduct}
+                SelectedCategory={'tech'}
+                addToCart={this.addToCart}
+              />
+            }
+          />
+          <Route
+            path="/clothes"
+            element={
+              <Main
+                setTargetedProduct={this.setTargetedProduct}
+                SelectedCategory={'clothes'}
                 addToCart={this.addToCart}
               />
             }

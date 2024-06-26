@@ -3,6 +3,7 @@ import { Query } from '@apollo/client/react/components';
 import { GET_Categories } from '../../queries';
 import './navigation-categories-style.css'
 import Loading from '../loading';
+import { Link } from 'react-router-dom';
 
 class CategoryList extends Component {
   
@@ -19,13 +20,20 @@ class CategoryList extends Component {
               <ul className={`category-list `}>
                 {
                   data.categories.map((category) =>{
-                    return <li
-                              key={category.name}
-                              dataname={category.name }
-                              onClick={(e) =>setSelectedCategory(e)} 
-                              className={`category-list-items ${category.name === selectedCategory ? 'selected ':''}`}
-                              data-testid={category.name === selectedCategory ? 'active-category-link' : 'category-link'}
-                              >{category.name.charAt(0).toUpperCase() + category.name.slice(1)}</li>
+                    return (
+                            <li
+                                key={category.name}
+                                dataname={category.name }
+                                className={`category-list-items ${category.name === selectedCategory ? 'selected ':''}`}
+                                
+                            >
+                              <Link 
+                                data-testid={category.name === selectedCategory ?
+                                  'active-category-link' : 'category-link'}
+                                onClick={() =>setSelectedCategory(category.name)} to={`/${category.name}`}
+                              >{category.name.charAt(0).toUpperCase() + category.name.slice(1)}</Link>
+                            </li>
+                          )
                   })
                 }
               </ul>

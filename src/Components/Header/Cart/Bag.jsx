@@ -4,7 +4,6 @@ import { Query ,Mutation } from '@apollo/client/react/components';
 import { GET_PRODUCT , CREATE_ORDER} from './../../../queries';
 import './cart-style.css';
 import Attribute from './attribute';
-import { unmountComponentAtNode } from 'react-dom';
 
 
 export default class Bag extends Component {
@@ -28,7 +27,7 @@ export default class Bag extends Component {
 
     handlePlaceOrder = async (createOrder) => {
         const { cart, clearCart } = this.props;
-        cart.map(async(item, index) =>{
+        cart.map(async(item) =>{
             let arrayOfAttributes = [];
             Object.keys(item.attributes).forEach((key) => {
                 arrayOfAttributes.push({"name":key, "value":item.attributes[key]})
@@ -62,7 +61,7 @@ export default class Bag extends Component {
             <div
                 data-testid="cart-overlay"
                 className='cart'>
-                <h2>My Bag, <span className='count'>{totalItems} {totalItems === 1 ? 'Item' : 'Items'}</span></h2>
+                <h2>My Bag, <span className='count'><span data-testid="cart-item-amount">{totalItems}</span> {totalItems === 1 ? 'item' : 'items'}</span></h2>
                 {cart.map((item, index) => (
                     <Query key={index} query={GET_PRODUCT} variables={{ id: item.productId }}>
                         {({ loading, error, data }) => {
@@ -73,7 +72,7 @@ export default class Bag extends Component {
                                         <div className='bag-content' key={index}>
                                             <div className='cart-product-details'>
                                                 <h2 className='cart-product-name'>{product.name}</h2>
-                                                <p className='cart-product-price'>{product.price}</p>
+                                                <p className='cart-product-price'>$ {product.price.slice(0,-1)}</p>
                                                 {
                                                     product.attributes.map((attribute)=>{
                                                         
@@ -87,9 +86,13 @@ export default class Bag extends Component {
                                                 }
                                             </div>
                                             <div className='cart-product-quantity'>
-                                                <button onClick={() => this.incrementQuantity(index)}>+</button>
+                                                <button
+                                                data-testid="cart-item-amount-increase"
+                                                onClick={() => this.incrementQuantity(index)}>+</button>
                                                 <span>{item.quantity}</span>
-                                                <button onClick={() => this.decrementQuantity(index)}>-</button>
+                                                <button 
+                                                data-testid="cart-item-amount-decrease"
+                                                onClick={() => this.decrementQuantity(index)}>-</button>
                                             </div>
                                             <img src={product.gallery[0]} alt="Product" className='cart-product-image' />
                                         </div>
@@ -98,10 +101,17 @@ export default class Bag extends Component {
                 ))}
                 <div className='total'>
                 <h3>Total: </h3>
-                <span>${Number.parseFloat(totalPrice).toFixed(2)}</span>
+                <span>$<span data-testid="cart-total">{Number.parseFloat(totalPrice).toFixed(2)}</span></span>
                 </div>
                 <Mutation mutation={CREATE_ORDER}>
-                    {(createOrder) => ( <button className={`place-order ${totalItems === 0 ? 'not-allowed' : ''}`} onClick={() => this.handlePlaceOrder(createOrder)}>Place Order</button>)}
+                    {(createOrder) => ( 
+                        <button 
+                            className={`place-order ${totalItems === 0 ? 'not-allowed' : ''}`} 
+                            onClick={() => this.handlePlaceOrder(createOrder)}
+                            data-testid="place-order-btn"
+                        >
+                        Place Order</button>
+                    )}
                 </Mutation>
             </div>
         )

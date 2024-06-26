@@ -66,7 +66,7 @@ class ProductCard extends Component {
                     onMouseEnter={this.setHoveringStateTrue} 
                     onMouseLeave={this.setHoveringStateFalse} 
                     className='product-card'
-                    data-testid={`product-${Product.name.replaceAll(" ","-")}`}
+                    data-testid={`product-${Product.name.toLowerCase().replaceAll(" ","-")}`}
                 >
                     <Link dataid={Product.id} to="/ProductPage">
                         <div
